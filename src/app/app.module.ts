@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UiModule } from './ui/ui.module';
   imports: [
     BrowserModule,BrowserAnimationsModule,
     AppRoutingModule,
-    AdminModule,UiModule
+    AdminModule,UiModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
