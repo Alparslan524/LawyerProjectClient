@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BrowserModule,BrowserAnimationsModule,
     AppRoutingModule,
     AdminModule,UiModule,
-    MatSidenavModule
+    MatSidenavModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
