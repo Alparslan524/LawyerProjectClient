@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
@@ -14,13 +14,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppComponent
   ],
   imports: [
-    BrowserModule,BrowserAnimationsModule,
+    BrowserModule, BrowserAnimationsModule,
     AppRoutingModule,
-    AdminModule,UiModule,
+    AdminModule, UiModule,
     MatSidenavModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{ provide: "baseUrl", useValue: "https://localhost:7032/api", multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
