@@ -1,2 +1,4 @@
-<button type="button" class="btn btn-success" (click)="deleteDialogDeneme()">Delete Dialog Deneme</button>
-<button mat-button style="background-color: red; color: white;" (click)="deleteDialogDeneme()" >DELETE</button>
+<mat-drawer-container class="advert-container">
+  <mat-drawer mode="side" opened style="width: 25%;" > <app-create></app-create> </mat-drawer>
+  <mat-drawer-content> <app-list></app-list> </mat-drawer-content>
+</mat-drawer-container>

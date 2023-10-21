@@ -8,6 +8,7 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,13 +17,13 @@ import { UiModule } from './ui/ui.module';
     AppComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule,
+    BrowserModule, BrowserAnimationsModule, HttpClientModule,
     AppRoutingModule,
     AdminModule, UiModule,
     MatSidenavModule,
     NgxSpinnerModule
   ],
-  providers: [{ provide: "baseUrl", useValue: "https://localhost:7032/api", multi: true }],
+  providers: [{ provide: "baseUrl", useValue: "https://localhost:7076/api", multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
