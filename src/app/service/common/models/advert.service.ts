@@ -33,9 +33,10 @@ export class AdvertService {
 
 
 
-  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; products: ListAdvert[] }> {
-    const promiseData: Promise<{ totalCount: number; products: ListAdvert[] }> = this.httpClientService.get<{ totalCount: number; products: ListAdvert[] }>({
-      controller: "products",
+  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; adverts: ListAdvert[] }> {
+    const promiseData: Promise<{ totalCount: number; adverts: ListAdvert[] }> = this.httpClientService.get<{ totalCount: number; adverts: ListAdvert[] }>({
+      controller: "adverts",
+      action:"getall",
       queryString: `page=${page}&size=${size}`
     }).toPromise();
 

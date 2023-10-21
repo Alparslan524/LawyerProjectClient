@@ -1,1 +1,63 @@
-<p>list works!</p>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource"> 
+      <!-- Name Column -->
+      <ng-container matColumnDef="caseType">
+        <th mat-header-cell *matHeaderCellDef> CaseType </th>
+        <td mat-cell *matCellDef="let element"> {{element.caseType}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="caseDate">
+        <th mat-header-cell *matHeaderCellDef> CaseDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.caseDate}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="district">
+        <th mat-header-cell *matHeaderCellDef> District </th>
+        <td mat-cell *matCellDef="let element"> {{element.district}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="casePlace">
+        <th mat-header-cell *matHeaderCellDef> CasePlace </th>
+        <td mat-cell *matCellDef="let element"> {{element.casePlace}} </td>
+      </ng-container>
+
+      <!-- createdDate Column -->
+    <ng-container matColumnDef="createDate">
+        <th mat-header-cell *matHeaderCellDef>Create Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.createDate }}</td>
+      </ng-container>
+  
+      <!-- updatedDate Column -->
+      <ng-container matColumnDef="updatedDate">
+        <th mat-header-cell *matHeaderCellDef>Updated Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.updatedDate }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator (page)="pageChanged()"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  
