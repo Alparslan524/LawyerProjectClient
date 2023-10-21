@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { CreateAdvert } from 'src/app/contracts/create_advert';
+import { CreateAdvert } from 'src/app/contracts/Adverts/create_advert';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AdvertService } from 'src/app/service/common/models/advert.service';
 
@@ -74,6 +74,12 @@ export class CreateComponent extends BaseComponent implements OnInit {
         dismissOthers: true
       });
       this.hideSpinner(SpinnerType.SquareJellyBox);
+    },errorMessage => {
+      this.alertify.message(errorMessage,{
+        dismissOthers:true,
+        position:Position.TopRight,
+        messageType:MessageType.Error
+      })
     })
 
   }
