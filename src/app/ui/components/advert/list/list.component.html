@@ -52,7 +52,15 @@
 
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell [id]="element.objectId" *matCellDef="let element" appDelete (callback)="getAdverts()" ></td>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        appDelete
+        [id]="element.objectId"
+        (callback)="getAdverts()"
+        controller="adverts"
+        action="deleteadvert"
+      ></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

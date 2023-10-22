@@ -1,10 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from 'src/app/base/base.component';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { HttpClientService } from 'src/app/service/common/http-client-service.service';
-import { AdvertService } from 'src/app/service/common/models/advert.service';
 
 declare var $: any
 
@@ -14,7 +15,7 @@ declare var $: any
 export class DeleteDirective {
   //element => Directiveyi kullandığımız HTML nesnesi
   constructor(private element: ElementRef, private _renderer: Renderer2, private httpClientService: HttpClientService,
-    private advertService: AdvertService, private spinner: NgxSpinnerService, private dialog: MatDialog) {
+    private spinner: NgxSpinnerService, private dialog: MatDialog, private alertifyService: AlertifyService) {
 
     const img = _renderer.createElement("img");
     img.setAttribute("src", "../../../../../assets/icons-delete-30.png");
@@ -24,6 +25,8 @@ export class DeleteDirective {
   }
 
   @Input() id: number;
+  @Input() controller: string;
+  @Input() action: string;
   @Output() callback: EventEmitter<any> = new EventEmitter();
 
   @HostListener("click")
@@ -31,11 +34,26 @@ export class DeleteDirective {
     this.openDialog(async () => {
       this.spinner.show(SpinnerType.SquareJellyBox);
       const td: HTMLTableCellElement = this.element.nativeElement;
-      await this.advertService.delete(this.id)
-      $(td.parentElement).fadeOut(2000, () => {
-        this.callback.emit();
+      //await this.advertService.delete(this.id)
+      this.httpClientService.putById({
+        controller: this.controller,
+        action: this.action,
+      }, this.id).subscribe(data => {
+        $(td.parentElement).fadeOut(2000, () => {
+          this.callback.emit();
+          this.alertifyService.message("Başarıyla silinmiştir", {
+            messageType: MessageType.Success,
+            position: Position.TopRight
+          })
+        });
+      }, (errorResponse: HttpErrorResponse) => {
+        this.spinner.hide(SpinnerType.SquareJellyBox);
+        this.alertifyService.message("Beklenmeyen Hata", {
+          messageType: MessageType.Error,
+          position: Position.TopRight
+        })
       });
-    })
+    });
   }
 
   openDialog(afterClosed: any): void {
