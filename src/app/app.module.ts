@@ -14,7 +14,7 @@ import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

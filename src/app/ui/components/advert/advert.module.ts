@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -14,6 +14,7 @@ import { AdvertComponent } from './advert.component';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { DeleteDirective } from 'src/app/directive/common/delete.directive';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DeleteDirective } from 'src/app/directive/common/delete.directive';
     AdvertComponent,
     CreateComponent,
     ListComponent,
-    DeleteDirective
+    DeleteDirective,
+    DeleteDialogComponent
 
   ],
   imports: [
