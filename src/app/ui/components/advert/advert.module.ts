@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AdvertComponent } from './advert.component';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
+import { DeleteDirective } from 'src/app/directive/common/delete.directive';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ListComponent } from './list/list.component';
     AdvertComponent,
     CreateComponent,
     ListComponent,
+    DeleteDirective
 
   ],
   imports: [

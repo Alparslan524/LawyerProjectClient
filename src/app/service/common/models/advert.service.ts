@@ -3,6 +3,7 @@ import { HttpClientService } from '../http-client-service.service';
 import { CreateAdvert } from 'src/app/contracts/Adverts/create_advert';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
+import { Observable, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,19 +30,23 @@ export class AdvertService {
     });
   }
 
-
-
-
-
   async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; adverts: ListAdvert[] }> {
     const promiseData: Promise<{ totalCount: number; adverts: ListAdvert[] }> = this.httpClientService.get<{ totalCount: number; adverts: ListAdvert[] }>({
       controller: "adverts",
-      action:"getall",
+      action: "getall",
       queryString: `page=${page}&size=${size}`
     }).toPromise();
 
     promiseData.then(d => successCallBack()).catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));
     return await promiseData;
+  }
+
+  async delete(id: number) {
+    const deleteObservable: Observable<any> = this.httpClientService.putById<any>({
+      controller: "adverts",
+      action: "deleteadvert"
+    }, id)
+    await firstValueFrom(deleteObservable);
   }
 
 }

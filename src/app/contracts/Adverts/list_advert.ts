@@ -1,4 +1,5 @@
 export class ListAdvert {
+    objectId: number;
     caseType: number;
     caseDate: Date;
     price: number;

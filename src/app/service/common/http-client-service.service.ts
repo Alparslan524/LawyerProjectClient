@@ -58,6 +58,16 @@ export class HttpClientService {
     return this.httpClient.delete<T>(url, { headers: requestParameters.headers });
   }
 
+  putById<T>(requestParameters: Partial<RequestParameters>, id: number): Observable<T> {
+    let url: string = "";
+    if (requestParameters.fullEndPoint) {
+      url = requestParameters.fullEndPoint;
+    } else {
+      url = `${this.url(requestParameters)}/${id}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
+    }
+    return this.httpClient.put<T>(url, { headers: requestParameters.headers });
+  }
+
 }
 
 

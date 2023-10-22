@@ -18,16 +18,16 @@ export class ListComponent extends BaseComponent implements OnInit {
     super(spinner);
   }
 
-  displayedColumns: string[] = ['caseType', 'caseDate', 'price', 'city', 'address', 'district', 'casePlace','createDate', 'updatedDate'];
+  displayedColumns: string[] = ['objectId', 'caseType', 'caseDate', 'price', 'city', 'address', 'district', 'casePlace', 'createDate', 'updatedDate', 'delete'];
   dataSource: MatTableDataSource<ListAdvert> = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   async ngOnInit() {
-    await this.getAdvert();
+    await this.getAdverts();
   }
 
-  async getAdvert() {
+  async getAdverts() {
     this.showSpinner(SpinnerType.SquareJellyBox);
     const allAdverts: { totalCount: number, adverts: ListAdvert[] } = await this.advertService.read(this.paginator ? this.paginator.pageIndex : 0,
       this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.SquareJellyBox),
@@ -40,8 +40,9 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.paginator.length = allAdverts.totalCount;
   }
 
-  async pageChanged() {
-    await this.getAdvert();
-  }
 
+
+  async pageChanged() {
+    await this.getAdverts();
+  }
 }
