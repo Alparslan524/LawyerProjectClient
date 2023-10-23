@@ -23,15 +23,14 @@ import { FileUploadModule } from 'src/app/service/common/file-upload/file-upload
     AdvertComponent,
     CreateComponent,
     ListComponent,
-    DeleteDirective,
-    DeleteDialogComponent
+    DeleteDirective
 
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: AdvertComponent }]),
     MatTableModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatPaginatorModule, MatDialogModule,
-    FileUploadModule
+    MatDialogModule, FileUploadModule
   ]
 })
 export class AdvertModule { }

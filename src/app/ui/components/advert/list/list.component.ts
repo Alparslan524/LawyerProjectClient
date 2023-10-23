@@ -21,7 +21,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   //FileUpload kullanımı örnek
   @Output() fileUploadOptions:Partial<FileUploadOptions> = {
-    action:"upload",
+    action:"upload/19",
     controller:"cases",
     explanation:"Dosyaları Seçiniz...",
     accept:".png, .jpg, .pdf, .jpeg"

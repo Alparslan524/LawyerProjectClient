@@ -3,6 +3,8 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { HttpClientService } from '../http-client-service.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { AlertifyService, MessageType, Position } from '../alertify.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -11,7 +13,7 @@ import { AlertifyService, MessageType, Position } from '../alertify.service';
 })
 export class FileUploadComponent {
 
-  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService) {
+  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private dialog:MatDialog) {
 
   }
 
@@ -28,23 +30,40 @@ export class FileUploadComponent {
       });
     }
 
-    this.httpClientService.post({
-      controller: this.options.controller,
-      action: this.options.action,
-      queryString: this.options.queryString,
-      headers: new HttpHeaders({ "responseType": "blob" })
-    }, fileData).subscribe(data => {
-      this.alertifyService.message("Dosyalar Başarıyla Yüklendi", {
-        messageType: MessageType.Success,
-        position: Position.TopRight
-      })
-    }, (errorResponse: HttpErrorResponse) => {
-      this.alertifyService.message("Beklenmedik Hata!", {
-        messageType: MessageType.Error,
-        position: Position.TopRight
-      })
+    this.openDialog(()=>{
+      this.httpClientService.post({
+        controller: this.options.controller,
+        action: this.options.action,
+        queryString: this.options.queryString,
+        headers: new HttpHeaders({ "responseType": "blob" })
+      }, fileData).subscribe(data => {
+        this.alertifyService.message("Dosyalar Başarıyla Yüklendi", {
+          messageType: MessageType.Success,
+          position: Position.TopRight
+        })
+      }, (errorResponse: HttpErrorResponse) => {
+        this.alertifyService.message("Beklenmedik Hata!", {
+          messageType: MessageType.Error,
+          position: Position.TopRight
+        })
+      });
+    })
+  }
+
+  openDialog(afterClosed: any): void {
+    const dialogRef = this.dialog.open(FileUploadDialogComponent, {
+      width: '350px',
+      data: FileUploadDialogState.Yes,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == FileUploadDialogState.Yes) {
+        afterClosed();
+      }
     });
   }
+
+
 }
 
 export class FileUploadOptions {
