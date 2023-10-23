@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from 'src/app/base/base.component';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
+import { DialogService } from 'src/app/service/common/dialog.service';
 import { HttpClientService } from 'src/app/service/common/http-client-service.service';
 
 declare var $: any
@@ -15,7 +16,8 @@ declare var $: any
 export class DeleteDirective {
   //element => Directiveyi kullandığımız HTML nesnesi
   constructor(private element: ElementRef, private _renderer: Renderer2, private httpClientService: HttpClientService,
-    private spinner: NgxSpinnerService, private dialog: MatDialog, private alertifyService: AlertifyService) {
+    private spinner: NgxSpinnerService, private dialog: MatDialog, private alertifyService: AlertifyService,
+    private dialogService: DialogService) {
 
     const img = _renderer.createElement("img");
     img.setAttribute("src", "../../../../../assets/icons-delete-30.png");
@@ -31,42 +33,34 @@ export class DeleteDirective {
 
   @HostListener("click")
   async onClick() {
-    this.openDialog(async () => {
-      this.spinner.show(SpinnerType.SquareJellyBox);
-      const td: HTMLTableCellElement = this.element.nativeElement;
-      //await this.advertService.delete(this.id)
-      this.httpClientService.putById({
-        controller: this.controller,
-        action: this.action,
-      }, this.id).subscribe(data => {
-        $(td.parentElement).fadeOut(2000, () => {
-          this.callback.emit();
-          this.alertifyService.message("Başarıyla silinmiştir", {
-            messageType: MessageType.Success,
-            position: Position.TopRight
-          })
-        });
-      }, (errorResponse: HttpErrorResponse) => {
-        this.spinner.hide(SpinnerType.SquareJellyBox);
-        this.alertifyService.message("Beklenmeyen Hata", {
-          messageType: MessageType.Error,
-          position: Position.TopRight
-        })
-      });
-    });
-  }
-
-  openDialog(afterClosed: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '350px',
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
       data: DeleteState.Yes,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == DeleteState.Yes) {
-        afterClosed();
+      afterClosed: async () => {
+        {
+          this.spinner.show(SpinnerType.SquareJellyBox);
+          const td: HTMLTableCellElement = this.element.nativeElement;
+          //await this.advertService.delete(this.id)
+          this.httpClientService.putById({
+            controller: this.controller,
+            action: this.action,
+          }, this.id).subscribe(data => {
+            $(td.parentElement).fadeOut(2000, () => {
+              this.callback.emit();
+              this.alertifyService.message("Başarıyla silinmiştir", {
+                messageType: MessageType.Success,
+                position: Position.TopRight
+              })
+            });
+          }, (errorResponse: HttpErrorResponse) => {
+            this.spinner.hide(SpinnerType.SquareJellyBox);
+            this.alertifyService.message("Beklenmeyen Hata", {
+              messageType: MessageType.Error,
+              position: Position.TopRight
+            })
+          });
+        }
       }
-    });
+    })
   }
-
 }

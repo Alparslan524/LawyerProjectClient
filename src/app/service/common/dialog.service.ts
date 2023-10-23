@@ -7,7 +7,6 @@ import { DialogPosition, MatDialog } from '@angular/material/dialog';
   providedIn: 'root'
 })
 export class DialogService {
-
   constructor(private dialog: MatDialog) { }
 
   openDialog(dialogParameters: Partial<DialogParameters>): void {
@@ -32,7 +31,6 @@ export class DialogParameters {
   afterClosed: () => void;
   options?: Partial<DialogOptions>;
 }
-
 
 export class DialogOptions {
   width?: string = "350px";
