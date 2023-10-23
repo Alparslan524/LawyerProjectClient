@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
+import { FileUploadOptions } from 'src/app/service/common/file-upload/file-upload.component';
 import { AdvertService } from 'src/app/service/common/models/advert.service';
 
 @Component({
@@ -17,6 +18,14 @@ export class ListComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private advertService: AdvertService, private alertifyService: AlertifyService) {
     super(spinner);
   }
+
+  //FileUpload kullanımı örnek
+  @Output() fileUploadOptions:Partial<FileUploadOptions> = {
+    action:"upload",
+    controller:"cases",
+    explanation:"Dosyaları Seçiniz...",
+    accept:".png, .jpg, .pdf, .jpeg"
+  };
 
   displayedColumns: string[] = ['objectId', 'caseType', 'caseDate', 'price', 'city', 'address', 'district', 'casePlace', 'createDate', 'updatedDate', 'delete'];
   dataSource: MatTableDataSource<ListAdvert> = null;

@@ -15,6 +15,7 @@ import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { DeleteDirective } from 'src/app/directive/common/delete.directive';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { FileUploadModule } from 'src/app/service/common/file-upload/file-upload.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: AdvertComponent }]),
-    MatTableModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatPaginatorModule, MatDialogModule
+    MatTableModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatPaginatorModule, MatDialogModule,
+    FileUploadModule
   ]
 })
 export class AdvertModule { }
