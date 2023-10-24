@@ -6,17 +6,19 @@ import { AlertifyService, MessageType, Position } from '../alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent {
+export class FileUploadComponent extends BaseComponent {
 
   constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private dialog: MatDialog,
-    private dialogService: DialogService) {
-
+    private dialogService: DialogService, spinner: NgxSpinnerService) {
+    super(spinner)
   }
 
   @Input() options: Partial<FileUploadOptions>;
@@ -37,17 +39,20 @@ export class FileUploadComponent {
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
         {
+          this.showSpinner(SpinnerType.SquareJellyBox);
           this.httpClientService.post({
             controller: this.options.controller,
             action: this.options.action,
             queryString: this.options.queryString,
             headers: new HttpHeaders({ "responseType": "blob" })
           }, fileData).subscribe(data => {
+            this.hideSpinner(SpinnerType.SquareJellyBox);
             this.alertifyService.message("Dosyalar Başarıyla Yüklendi", {
               messageType: MessageType.Success,
               position: Position.TopRight
             })
           }, (errorResponse: HttpErrorResponse) => {
+            this.hideSpinner(SpinnerType.SquareJellyBox);
             this.alertifyService.message("Beklenmedik Hata!", {
               messageType: MessageType.Error,
               position: Position.TopRight
