@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Dava Oluşturma</h1>
+
+<div class="container">
+  <form [formGroup]="caseForm" (ngSubmit)="create()">
+      <mat-form-field class="case-create"  appearance="outline">
+          <mat-label>IdUserFK</mat-label>
+          <input matInput type="number" min="0" value="0" formControlName="idUserFK" >
+        </mat-form-field>
+  
+        <mat-form-field class="case-create" appearance="outline">
+          <mat-label>CaseNumber</mat-label>
+          <input matInput type="number" min="0" value="0" formControlName="caseNumber" >
+        </mat-form-field>
+        
+        <mat-form-field class="case-create" appearance="outline">
+          <mat-label>CaseNot</mat-label>
+          <input matInput type="text" min="0" value="0" formControlName="caseNot" >
+        </mat-form-field>
+
+        <mat-form-field class="case-create" appearance="outline">
+          <mat-label>CaseDescription</mat-label>
+          <input matInput formControlName="caseDescription" >
+        </mat-form-field>
+  
+        <mat-form-field class="case-create" appearance="outline">
+          <mat-label>CaseType</mat-label>
+          <mat-select  placeholder="CaseType Seçin" formControlName="caseType" >
+            <mat-option *ngFor="let type of caseTypes" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field class="case-create" appearance="outline">
+          <mat-label> Dava Tarihi </mat-label>
+          <input matInput type="date" formControlName="caseDate">
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" class="btn case-create">Dava Oluştur </button>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">İptal</button>
+</div>

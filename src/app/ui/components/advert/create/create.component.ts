@@ -68,13 +68,14 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_advert.CasePlace = this.advertForm.get('casePlace').value;
 
     this.advertService.create(create_advert, () => {
+      this.hideSpinner(SpinnerType.SquareJellyBox);
       this.alertify.message("İlan başarıyla eklenmiştir!!", {
         messageType: MessageType.Success,
         position: Position.TopRight,
         dismissOthers: true
       });
-      this.hideSpinner(SpinnerType.SquareJellyBox);
     },errorMessage => {
+      this.hideSpinner(SpinnerType.SquareJellyBox);
       this.alertify.message(errorMessage,{
         dismissOthers:true,
         position:Position.TopRight,
