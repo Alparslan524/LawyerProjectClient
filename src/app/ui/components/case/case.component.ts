@@ -3,12 +3,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent } from 'src/app/base/base.component';
 
 @Component({
-  selector: 'app-my-lawsuit',
-  templateUrl: './my-lawsuit.component.html',
-  styleUrls: ['./my-lawsuit.component.scss']
+  selector: 'app-case',
+  templateUrl: './case.component.html',
+  styleUrls: ['./case.component.scss']
 })
-export class MyLawsuitComponent extends BaseComponent {
+export class CaseComponent extends BaseComponent {
   constructor(spinner: NgxSpinnerService) {
     super(spinner);
   }
+
+  fileUpload(){
+    alert("fileupload dialogu gelcek.")
+  }
+  
 }

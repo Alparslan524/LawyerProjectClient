@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NewsModule } from './news/news.module';
 import { AdvertModule } from './advert/advert.module';
 import { CalculationModule } from './calculation/calculation.module';
+import { CaseModule } from './case/case.module';
 import { ConstitutionModule } from './constitution/constitution.module';
-import { MyLawsuitModule } from './my-lawsuit/my-lawsuit.module';
+import { NewsModule } from './news/news.module';
 
 
 
@@ -13,7 +13,7 @@ import { MyLawsuitModule } from './my-lawsuit/my-lawsuit.module';
   ],
   imports: [
     CommonModule,
-    AdvertModule, CalculationModule, ConstitutionModule, MyLawsuitModule, NewsModule
+    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule
   ]
 })
 export class ComponentsModule { }

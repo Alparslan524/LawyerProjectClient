@@ -13,7 +13,6 @@ export class ConstitutionComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showSpinner(SpinnerType.SquareJellyBox);
   }
 
 

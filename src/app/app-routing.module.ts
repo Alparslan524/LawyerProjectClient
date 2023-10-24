@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "", component: AdvertComponent },
   { path: "calculation", loadChildren: () => import("./ui/components/calculation/calculation.module").then(module => module.CalculationModule) },
   { path: "constitution", loadChildren: () => import("./ui/components/constitution/constitution.module").then(module => module.ConstitutionModule) },
-  { path: "mylawsuit", loadChildren: () => import("./ui/components/my-lawsuit/my-lawsuit.module").then(module => module.MyLawsuitModule) },
+  { path: "case", loadChildren: () => import("./ui/components/case/case.module").then(module => module.CaseModule) },
   { path: "news", loadChildren: () => import("./ui/components/news/news.module").then(module => module.NewsModule) }
 ];
 

@@ -13,25 +13,4 @@ export class CalculationComponent extends BaseComponent {
     super(spinner);
   }
 
-  message = "Alertify Çalşışıyor!!"
-  natificationError() {
-    this.alertifyService.message(this.message, {
-      dismissOthers: false,
-      messageType: MessageType.Error,
-      position: Position.TopRight
-    });
-  }
-
-  natificationSuccess() {
-    this.alertifyService.message(this.message, {
-      dismissOthers: false,
-      messageType: MessageType.Success,
-      position: Position.TopRight
-    });
-  }
-
-  natificationDismisOther() {
-    this.alertifyService.dismiss();
-  }
-
 }
