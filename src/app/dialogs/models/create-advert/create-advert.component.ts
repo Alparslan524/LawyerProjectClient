@@ -5,18 +5,22 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { CreateAdvert } from 'src/app/contracts/Adverts/create_advert';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AdvertService } from 'src/app/service/common/models/advert.service';
+import { BaseDialog } from '../../base/base-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-advert',
+  templateUrl: './create-advert.component.html',
+  styleUrls: ['./create-advert.component.scss']
 })
-export class CreateComponent extends BaseComponent implements OnInit {
+export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> implements OnInit {
+
   advertForm: FormGroup;
   caseTypes = ['Boş', 'Boşanma Davası', 'Tazminat Davası', 'Kira Davası'];
 
-  constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private advertService: AdvertService, private alertify: AlertifyService) {
-    super(spinner)
+  constructor(dialogRef: MatDialogRef<CreateAdvertComponent>, private fb: FormBuilder,
+    private advertService: AdvertService, private alertify: AlertifyService, private spinner: NgxSpinnerService) {
+    super(dialogRef)
   }
 
   ngOnInit(): void {
@@ -34,8 +38,9 @@ export class CreateComponent extends BaseComponent implements OnInit {
 
 
 
+
   create() {
-    this.showSpinner(SpinnerType.SquareJellyBox);
+    this.spinner.show(SpinnerType.SquareJellyBox);
 
     let caseTypeValue: number;
 
@@ -68,23 +73,19 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_advert.CasePlace = this.advertForm.get('casePlace').value;
 
     this.advertService.create(create_advert, () => {
-      this.hideSpinner(SpinnerType.SquareJellyBox);
+      this.spinner.hide(SpinnerType.SquareJellyBox);
       this.alertify.message("İlan başarıyla eklenmiştir!!", {
         messageType: MessageType.Success,
         position: Position.TopRight,
         dismissOthers: true
       });
-    },errorMessage => {
-      this.hideSpinner(SpinnerType.SquareJellyBox);
-      this.alertify.message(errorMessage,{
-        dismissOthers:true,
-        position:Position.TopRight,
-        messageType:MessageType.Error
+    }, errorMessage => {
+      this.spinner.hide(SpinnerType.SquareJellyBox);
+      this.alertify.message(errorMessage, {
+        dismissOthers: true,
+        position: Position.TopRight,
+        messageType: MessageType.Error
       })
     })
-
   }
-
-
-
 }

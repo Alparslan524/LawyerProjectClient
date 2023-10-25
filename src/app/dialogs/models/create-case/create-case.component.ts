@@ -6,7 +6,8 @@ import { SpinnerType } from 'src/app/base/base.component';
 import { CreateCase } from 'src/app/contracts/Case/create_case';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { CaseService } from 'src/app/service/common/models/case.service';
-import { BaseDialog } from '../base/base-dialog';
+import { BaseDialog } from '../../base/base-dialog';
+
 
 @Component({
   selector: 'app-create-case',

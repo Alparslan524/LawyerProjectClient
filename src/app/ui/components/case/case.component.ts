@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent } from 'src/app/base/base.component';
-import { CreateCaseComponent } from 'src/app/dialogs/create-case/create-case.component';
+import { CreateAdvertComponent } from 'src/app/dialogs/models/create-advert/create-advert.component';
+import { CreateCaseComponent } from 'src/app/dialogs/models/create-case/create-case.component';
 import { DialogService } from 'src/app/service/common/dialog.service';
 
 @Component({
@@ -21,6 +22,12 @@ export class CaseComponent extends BaseComponent {
   createCaseDialog() {
     this.dialogService.openDialog({
       componentType: CreateCaseComponent
+    })
+  }
+
+  createAdvertDialog() {
+    this.dialogService.openDialog({
+      componentType: CreateAdvertComponent
     })
   }
 
