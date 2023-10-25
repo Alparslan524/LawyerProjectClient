@@ -34,7 +34,7 @@
           <input matInput type="date" formControlName="caseDate">
         </mat-form-field>
         
-        <button mat-raised-button color="primary" class="btn case-create">Dava Oluştur </button>
+        <button mat-raised-button color="primary" class="btn case-create" [disabled]="!caseForm.valid">Dava Oluştur </button>
   </form>
 </div>
 

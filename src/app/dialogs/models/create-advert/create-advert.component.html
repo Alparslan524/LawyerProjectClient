@@ -44,7 +44,7 @@
             <input matInput formControlName="casePlace"  >
           </mat-form-field>
         
-          <button mat-raised-button color="primary" class="btn advert-create">İlan Oluştur </button>
+          <button mat-raised-button color="primary" class="btn advert-create" [disabled]="!advertForm.valid">İlan Oluştur </button>
     </form>
 </div>
 
