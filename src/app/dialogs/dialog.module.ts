@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateAdvertComponent } from './models/create-advert/create-advert.component';
 import { CreateCaseComponent } from './models/create-case/create-case.component';
+import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-case-pdf-dialog.component';
+import { FileUploadModule } from '../service/common/file-upload/file-upload.module';
 
 
 
@@ -17,13 +19,15 @@ import { CreateCaseComponent } from './models/create-case/create-case.component'
 @NgModule({
   declarations: [
     DeleteDialogComponent,
-    FileUploadDialogComponent,
     CreateCaseComponent,
-    CreateAdvertComponent
+    CreateAdvertComponent,
+    SelectCasePdfDialogComponent
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule
+    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
+    FileUploadModule
+
   ]
 })
 export class DialogModule { }
