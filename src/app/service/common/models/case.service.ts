@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClientService } from '../http-client-service.service';
-import { CreateCase } from 'src/app/contracts/Case/create_case';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, firstValueFrom } from 'rxjs';
+import { CreateCase } from 'src/app/contracts/Case/create_case';
+import { ListCasePdf } from 'src/app/contracts/Case/list_case_pdf';
+import { HttpClientService } from '../http-client-service.service';
+import { ListCase } from 'src/app/contracts/Case/list_case';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +31,35 @@ export class CaseService {
     });
   }
 
+  async readByUserId(id: number, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<ListCase[]> {
+    const getObservable: Observable<ListCase[]> = this.httpClientService.get<ListCase[]>({
+      controller: "cases",
+      action: `getbyuserid/${id}`,
+    });
+    const cases: ListCase[] = await firstValueFrom(getObservable);
+    successCallBack();
+    return cases
+  }
 
+
+  async readPdf(id: number, successCallBack?: () => void): Promise<ListCasePdf[]> {
+    const getObservable: Observable<ListCasePdf[]> = this.httpClientService.get<ListCasePdf[]>({
+      controller: "cases",
+      action: `getcasepdffile/${id}`
+    })
+    const cases: ListCasePdf[] = await firstValueFrom(getObservable);
+    successCallBack();
+    return cases;
+  }
+
+  async deletePdf(id: number, pdfId: number,successCallBack?: () => void) {
+    const deleteObservable = this.httpClientService.delete({
+      controller: "cases",
+      action: "deletepdf",
+      queryString: `pdfId=${pdfId}`
+    }, id)
+    await firstValueFrom(deleteObservable);
+    successCallBack();
+  }
+  
 }

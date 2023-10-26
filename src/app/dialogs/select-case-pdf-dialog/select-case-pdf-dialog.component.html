@@ -1,9 +1,31 @@
-<h2 mat-dialog-title>Dosya Yükleme</h2>
-<mat-dialog-content class="mat-typography">
+<mat-drawer-container class="pdf-container">
   
-    <app-file-upload [options]="fileUploadOptions" ></app-file-upload>
+  <mat-drawer mode="side" opened>
+    <h2 mat-dialog-title>Dosya İşlemleri</h2>
+    <mat-dialog-content class="mat-typography">
+      <app-file-upload [options]="fileUploadOptions"></app-file-upload>
+    </mat-dialog-content>
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <mat-card class="pdf-card" *ngFor="let pdfFile of pdfFiles">
+      <!-- Burada ilgili avukatın davasının ne kadar pdf'i varsa o kadar dönecez -->
+      <mat-card-header> </mat-card-header>
 
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>İptal</button>
-</mat-dialog-actions>
+      <p>{{ pdfFile.fileName }}</p>
+
+      <mat-card-actions style="margin-top: auto;">
+        <button mat-fab color="warn" style="position: relative; margin: auto;" (click)="deletePdf(pdfFile.id, $event)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    
+    </mat-card>
+
+    
+    <mat-dialog-actions align="end" style="position:absolute; bottom:0; right:0;">
+      <button mat-raised-button color="warn" mat-dialog-close >İptal</button>
+    </mat-dialog-actions>
+  </mat-drawer-content>
+  
+</mat-drawer-container>

@@ -1,14 +1,16 @@
-<p>case works!</p>
-
-<!-- <h1>Case List (olacak ama cardlar şeklinde. Cardların içinde de aşağıdaki buton olacak ve dosya yükleyebilecek)</h1> -->
-<button type="button" class="btn btn-danger bx"> Case List</button>
-<br>
-<br>
-<!-- <button type="button" class="btn btn-danger bx" (click)="fileUpload(element.id)"> <i class='bx bxs-cloud-upload'></i> Hert cardda olacak dosya yükleme butonu </button> -->
-<button type="button" class="btn btn-danger bx" (click)="fileUpload(20)"> <i class='bx bxs-cloud-upload'></i> Hert cardda olacak dosya yükleme butonu </button>
-<!-- buraya carddaki davanın id sini göndericez aslında -->
-<br>
-<br>
+<mat-card class="pdf-card" *ngFor="let case of cases">
+    <mat-card-header> 
+        <h2>{{case.caseNot}}</h2>
+    </mat-card-header>
+    <!-- Burayı süslememiz lazım. Dava ile ilgili bilgiler vs dolacak -->
+    <p>
+        {{case.caseDescription}}
+    </p>
+    <p>
+        {{case.caseType}}
+    </p>
+    <button mat-flat-button color="primary" (click)="fileUpload(case.objectId)"><i class='bx bxs-cloud-upload'></i> Dosya işlemleri</button>
+  </mat-card>
 
 
 <button type="button" class="btn btn-success bx" (click)="createCaseDialog()" > Dava Oluşturma butonu</button>

@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent } from 'src/app/base/base.component';
+import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { ListCase } from 'src/app/contracts/Case/list_case';
 import { CreateAdvertComponent } from 'src/app/dialogs/models/create-advert/create-advert.component';
 import { CreateCaseComponent } from 'src/app/dialogs/models/create-case/create-case.component';
 import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { DialogService } from 'src/app/service/common/dialog.service';
+import { CaseService } from 'src/app/service/common/models/case.service';
 
 @Component({
   selector: 'app-case',
   templateUrl: './case.component.html',
   styleUrls: ['./case.component.scss']
 })
-export class CaseComponent extends BaseComponent {
-  constructor(spinner: NgxSpinnerService, private dialogService: DialogService) {
+export class CaseComponent extends BaseComponent implements OnInit {
+  constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService) {
     super(spinner);
+  }
+
+  cases: ListCase[];
+
+  async ngOnInit() {
+    this.showSpinner(SpinnerType.SquareJellyBox);
+    this.cases = await this.caseService.readByUserId(2,()=>{//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
+      this.hideSpinner(SpinnerType.SquareJellyBox);
+    });
   }
 
   fileUpload(id: number) {
@@ -21,7 +33,7 @@ export class CaseComponent extends BaseComponent {
       componentType: SelectCasePdfDialogComponent,
       data: id,
       options: {
-        width: '700px'
+        width: '1400px'
       }
     })
   }

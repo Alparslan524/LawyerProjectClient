@@ -12,6 +12,9 @@ import { CreateAdvertComponent } from './models/create-advert/create-advert.comp
 import { CreateCaseComponent } from './models/create-case/create-case.component';
 import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { FileUploadModule } from '../service/common/file-upload/file-upload.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon'
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -19,14 +22,14 @@ import { FileUploadModule } from '../service/common/file-upload/file-upload.modu
 @NgModule({
   declarations: [
     DeleteDialogComponent,
-    CreateCaseComponent,
-    CreateAdvertComponent,
+    CreateCaseComponent, CreateAdvertComponent,
     SelectCasePdfDialogComponent
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,
+    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, MatIconModule, MatSidenavModule,
     FileUploadModule
+    
 
   ]
 })
