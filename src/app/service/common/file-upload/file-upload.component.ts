@@ -39,24 +39,24 @@ export class FileUploadComponent extends BaseComponent {
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
         {
-          this.showSpinner(SpinnerType.SquareJellyBox);
+          this.showSpinner(SpinnerType.SquareJellyBoxWithText);
           this.httpClientService.post({
             controller: this.options.controller,
             action: this.options.action,
             queryString: this.options.queryString,
             headers: new HttpHeaders({ "responseType": "blob" })
           }, fileData).subscribe(data => {
-            this.hideSpinner(SpinnerType.SquareJellyBox);
             this.alertifyService.message("Dosyalar Başarıyla Yüklendi", {
               messageType: MessageType.Success,
               position: Position.TopRight
             })
+            this.hideSpinner(SpinnerType.SquareJellyBoxWithText);
           }, (errorResponse: HttpErrorResponse) => {
-            this.hideSpinner(SpinnerType.SquareJellyBox);
             this.alertifyService.message("Beklenmedik Hata!", {
               messageType: MessageType.Error,
               position: Position.TopRight
             })
+            this.hideSpinner(SpinnerType.SquareJellyBoxWithText);
           });
         }
       }

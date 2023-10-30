@@ -22,5 +22,6 @@ export class BaseComponent {
 
 
 export enum SpinnerType {
-    SquareJellyBox = "squareJellyBox"
+    SquareJellyBox = "squareJellyBox",
+    SquareJellyBoxWithText="squareJellyBoxWithText"
 }
