@@ -10,7 +10,7 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  title = 'LawyerProjectClient';
+  
 
   constructor(spinner: NgxSpinnerService) {
     super(spinner);

@@ -5,6 +5,8 @@ import { CalculationModule } from './calculation/calculation.module';
 import { CaseModule } from './case/case.module';
 import { ConstitutionModule } from './constitution/constitution.module';
 import { NewsModule } from './news/news.module';
+import { RegisterModule } from './register/register.module';
+import { SidebarModule } from './sidebar/sidebar.module';
 
 
 
@@ -13,7 +15,7 @@ import { NewsModule } from './news/news.module';
   ],
   imports: [
     CommonModule,
-    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule
+    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule, SidebarModule, RegisterModule
   ]
 })
 export class ComponentsModule { }

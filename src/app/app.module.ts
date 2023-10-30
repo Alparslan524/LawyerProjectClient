@@ -9,6 +9,8 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
+import { RegisterModule } from './ui/components/register/register.module';
+import { SidebarModule } from './ui/components/sidebar/sidebar.module';
 
 
 
@@ -19,7 +21,7 @@ import { UiModule } from './ui/ui.module';
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     AppRoutingModule,
-    AdminModule, UiModule,
+    AdminModule, UiModule, RegisterModule, SidebarModule,
     MatSidenavModule,
     NgxSpinnerModule
   ],
