@@ -14,8 +14,18 @@ export class UserService {
   async create(user: User) {
     const observable: Observable<CreateUser | User> = this.httpClientService.post<CreateUser | User>({
       controller: "users",
-      action:"createuser"
+      action: "createuser"
     }, user);
     return await firstValueFrom(observable) as CreateUser;
   }
+
+  async login(userNameOrEmail: string, password: string, callBack?: () => void): Promise<void> {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "auth",
+      action: "login"
+    }, { userNameOrEmail, password })
+    await firstValueFrom(observable);
+    callBack();
+  }
+
 }
