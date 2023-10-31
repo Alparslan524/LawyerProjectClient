@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { RegisterModule } from './ui/components/register/register.module';
 import { SidebarModule } from './ui/components/sidebar/sidebar.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -23,7 +24,13 @@ import { SidebarModule } from './ui/components/sidebar/sidebar.module';
     AppRoutingModule,
     AdminModule, UiModule, RegisterModule, SidebarModule,
     MatSidenavModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem("accessToken"),
+        allowedDomains: ["localhost:7076"]
+      }
+    })
   ],
   providers: [{ provide: "baseUrl", useValue: "https://localhost:7076/api", multi: true }],
   bootstrap: [AppComponent]

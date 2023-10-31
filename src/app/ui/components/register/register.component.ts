@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { CreateUser } from 'src/app/contracts/User/create-user';
@@ -13,7 +14,8 @@ import { UserService } from 'src/app/service/common/models/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent extends BaseComponent implements OnInit {
-  constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService) {
+  constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService
+    , private router: Router) {
     super(spinner)
   }
 
