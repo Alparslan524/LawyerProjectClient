@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
         }
 
         if (!token || expired) {
-            this.router.navigate(["register"], { queryParams: { returnUrl: state.url } });
+            this.router.navigate([""]);
             this.alertify.message("Oturum açmanız gerekmektedir!", {
                 messageType: MessageType.Error,
                 position: Position.TopRight

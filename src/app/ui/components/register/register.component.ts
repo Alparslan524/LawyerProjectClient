@@ -92,6 +92,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     }
     this.showSpinner(SpinnerType.SquareJellyBox);
     await this.userService.login(this.frmLogin.value.userNameOrEmail, this.frmLogin.value.passwordLogin, () => {
+      this.router.navigate(["sidebar/advert"])
       this.hideSpinner(SpinnerType.SquareJellyBox);
     })
   }

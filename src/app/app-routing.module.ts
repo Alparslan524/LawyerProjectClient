@@ -8,14 +8,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { SidebarComponent } from './ui/components/sidebar/sidebar.component';
 
 const routes: Routes = [
-  
 
-  // { path: "", component: SidebarComponent, canActivate: [AuthGuard] },
-
-  { path: "register", loadChildren: () => import("./ui/components/register/register.module").then(module => module.RegisterModule), },
-  // { path: "sidebar", loadChildren: () => import("./ui/components/sidebar/sidebar.module").then(module => module.SidebarModule), },
+  { path: "", component:RegisterComponent},
   {
-    path: "", component: SidebarComponent, canActivate: [AuthGuard], children: [
+    path: "sidebar", component: SidebarComponent, canActivate: [AuthGuard], children: [
       { path: "advert", loadChildren: () => import("./ui/components/advert/advert.module").then(module => module.AdvertModule), canActivate: [AuthGuard] },
       { path: "calculation", loadChildren: () => import("./ui/components/calculation/calculation.module").then(module => module.CalculationModule), canActivate: [AuthGuard] },
       { path: "constitution", loadChildren: () => import("./ui/components/constitution/constitution.module").then(module => module.ConstitutionModule), canActivate: [AuthGuard] },
