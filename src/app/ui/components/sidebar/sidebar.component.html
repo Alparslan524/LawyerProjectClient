@@ -1,41 +1,54 @@
 <div class="wrapper">
-    <div class="sidebar">
-      <h2 class="bx bx-layer nav_logo-icon"> Avukatım Cepte</h2>
-      <ul>
-        <li>
-          <a href="#" routerLink="advert"><i class=" bx bx-globe"></i> İlanlar</a>
-        </li>
-        <li>
-          <a href="#" routerLink="calculation"
-            ><i class="bx bxs-calculator"></i> Hesaplamalar</a
-          >
-        </li>
-        <li>
-          <a href="#" routerLink="constitution"><i class="bx bx-library"></i> Anayasa</a>
-        </li>
-        <li>
-          <a href="#" routerLink="news"><i class="bx bxs-news"></i> Haberler</a>
-        </li>
-        <li>
-          <a href="#" routerLink="case"><i class="bx bxs-briefcase-alt-2"></i> Davalarım</a>
-        </li>
-        <li>
-          <a href="#" routerLink="admin/"><i class="bx bxs-terminal"></i> Admin</a>
-        </li>
-      </ul>
-      <div class="social_media">
-        <a href="#"><i class="bx bxl-meta" style="font-size: large"></i></a>
-        <a href="#"><i class="bx bx-x" style="font-size: large"></i></a>
-        <a href="#"><i class="bx bxl-instagram" style="font-size: large"></i></a>
-      </div>
-    </div>
-    <div class="main_content">
-      <div class="header" style="font-size: large">
-        AvukatımCepte.com.tr'ye Hoşgeldiniz!
-      </div>
-      <div class="info">
-        <router-outlet></router-outlet>
-      </div>
+  <div class="sidebar">
+    <h2 class="bx bx-layer nav_logo-icon">Avukatım Cepte</h2>
+    <ul>
+      <li>
+        <a href="#" routerLink="advert"><i class="bx bx-globe"></i> İlanlar</a>
+      </li>
+      <li>
+        <a href="#" routerLink="calculation"
+          ><i class="bx bxs-calculator"></i> Hesaplamalar</a
+        >
+      </li>
+      <li>
+        <a href="#" routerLink="constitution"
+          ><i class="bx bx-library"></i> Anayasa</a
+        >
+      </li>
+      <li>
+        <a href="#" routerLink="news"><i class="bx bxs-news"></i> Haberler</a>
+      </li>
+      <li>
+        <a href="#" routerLink="case"
+          ><i class="bx bxs-briefcase-alt-2"></i> Davalarım</a
+        >
+      </li>
+      <li>
+        <a href="#" routerLink="admin/"
+          ><i class="bx bxs-terminal"></i> Admin</a
+        >
+      </li>
+    </ul>
+    <div class="social_media">
+      <a href="#"><i class="bx bxl-meta" style="font-size: large"></i></a>
+      <a href="#"><i class="bx bx-x" style="font-size: large"></i></a>
+      <a href="#"><i class="bx bxl-instagram" style="font-size: large"></i></a>
     </div>
   </div>
-  
+  <div class="main_content">
+    <div class="header" style="font-size: large">
+      AvukatımCepte.com.tr'ye Hoşgeldiniz!
+      <button
+        mat-flat-button
+        color="warn"
+        style="float: right; position: relative; bottom: 5px"
+        (click)="signOut()"
+      >
+        Çıkış Yap <i class="bx bx-log-out"></i>
+      </button>
+    </div>
+    <div class="info">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

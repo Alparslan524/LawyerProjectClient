@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent } from 'src/app/base/base.component';
+import { AuthService } from 'src/app/service/common/auth.service';
 
 
 
@@ -11,8 +12,9 @@ import { BaseComponent } from 'src/app/base/base.component';
   styleUrls: ['./advert.component.scss']
 })
 export class AdvertComponent extends BaseComponent {
-  constructor(spinner: NgxSpinnerService) {
+  constructor(spinner: NgxSpinnerService, private authService: AuthService) {
     super(spinner);
+    authService.identityCheck();
   }
 
 }

@@ -4,6 +4,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { NgxSpinnerService } from "ngx-spinner";
 import { SpinnerType } from "src/app/base/base.component";
 import { AlertifyService, MessageType, Position } from "../service/common/alertify.service";
+import { _isAuthenticated } from "../service/common/auth.service";
 
 
 @Injectable({
@@ -14,19 +15,9 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         this.spinner.show(SpinnerType.SquareJellyBox);
-        const token: string = localStorage.getItem("accessToken");
 
-        //const decodeToken = this.jwtHelper.decodeToken(token);
-        //const expirationDate: Date = this.jwtHelper.getTokenExpirationDate(token);
-        let expired: boolean
-        try {
-            expired = this.jwtHelper.isTokenExpired(token);
-        } catch {
-            expired = true;
-        }
-
-        if (!token || expired) {
-            this.router.navigate([""]);
+        if (!_isAuthenticated) {
+            this.router.navigate([""],{ queryParams: { returnUrl: state.url } });
             this.alertify.message("Oturum açmanız gerekmektedir!", {
                 messageType: MessageType.Error,
                 position: Position.TopRight

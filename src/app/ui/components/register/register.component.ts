@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { CreateUser } from 'src/app/contracts/User/create-user';
 import { User } from 'src/app/entities/User';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
+import { AuthService } from 'src/app/service/common/auth.service';
 import { UserService } from 'src/app/service/common/models/user.service';
 
 @Component({
@@ -15,8 +16,9 @@ import { UserService } from 'src/app/service/common/models/user.service';
 })
 export class RegisterComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService
-    , private router: Router) {
+    , private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute) {
     super(spinner)
+    authService.identityCheck();
   }
 
   frmRegister: FormGroup
@@ -92,7 +94,20 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     }
     this.showSpinner(SpinnerType.SquareJellyBox);
     await this.userService.login(this.frmLogin.value.userNameOrEmail, this.frmLogin.value.passwordLogin, () => {
-      this.router.navigate(["sidebar/advert"])
+      this.authService.identityCheck()
+
+      var returnUrl: string;
+      this.activatedRoute.queryParams.subscribe(params => {
+        //Daha önce geldiği bir yer var ise oraya yönlendirecek. Eğer yok ise sidebar/adverte yönlendirecek
+        returnUrl = params["returnUrl"]
+      });
+
+      if (returnUrl) {
+        this.router.navigate([returnUrl])
+      }
+      else {
+        this.router.navigate(["sidebar/advert"])
+      }
       this.hideSpinner(SpinnerType.SquareJellyBox);
     })
   }

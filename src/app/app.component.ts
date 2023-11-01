@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from './base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from './service/common/auth.service';
 
 declare var $: any;
 
@@ -10,10 +11,11 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  
 
-  constructor(spinner: NgxSpinnerService) {
+
+  constructor(spinner: NgxSpinnerService, private authService: AuthService) {
     super(spinner);
+    authService.identityCheck()
   }
 
   ngOnInit(): void {
