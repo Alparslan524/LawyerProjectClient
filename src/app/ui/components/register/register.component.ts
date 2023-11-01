@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,9 +17,33 @@ import { UserService } from 'src/app/service/common/models/user.service';
 })
 export class RegisterComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService
-    , private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute) {
+    , private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute,
+    private socialAuthService: SocialAuthService) {
     super(spinner)
     authService.identityCheck();
+    socialAuthService.authState.subscribe(async (user: SocialUser) => {
+      this.showSpinner(SpinnerType.SquareJellyBox);
+      // switch (user.provider) { //Çalışan kod. Hatadan doalyı kaldırıldı. google giriş yapılmıyor.
+      //   case "GOOGLE":
+      //     await userService.googleLogin(user, () => {
+      //       this.authService.identityCheck();
+      //       var returnUrl: string;
+      //       this.activatedRoute.queryParams.subscribe(params => {
+      //         //Daha önce geldiği bir yer var ise oraya yönlendirecek. Eğer yok ise sidebar/adverte yönlendirecek
+      //         returnUrl = params["returnUrl"]
+      //       });
+
+      //       if (returnUrl) {
+      //         this.router.navigate([returnUrl])
+      //       }
+      //       else {
+      //         this.router.navigate(["sidebar/advert"])
+      //       }
+      //       this.hideSpinner(SpinnerType.SquareJellyBox);
+      //     })
+      //     break;
+      // }
+    });
   }
 
   frmRegister: FormGroup

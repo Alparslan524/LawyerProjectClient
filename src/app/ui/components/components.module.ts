@@ -15,7 +15,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
   ],
   imports: [
     CommonModule,
-    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule, SidebarModule, RegisterModule
+    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule, SidebarModule,
   ]
 })
 export class ComponentsModule { }

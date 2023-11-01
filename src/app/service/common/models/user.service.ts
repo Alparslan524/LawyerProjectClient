@@ -5,6 +5,7 @@ import { CreateUser } from 'src/app/contracts/User/create-user';
 import { Observable, firstValueFrom } from 'rxjs';
 import { TokenResponse } from 'src/app/contracts/Token/tokenResponse';
 import { AlertifyService, MessageType, Position } from '../alertify.service';
+import { SocialUser } from '@abacritt/angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,22 @@ export class UserService {
         messageType: MessageType.Success,
         position: Position.TopRight
       })
+    }
+    callBack();
+  }
+
+  async googleLogin(user: SocialUser, callBack?: () => void): Promise<any> {
+    const observable: Observable<SocialUser | TokenResponse> = await this.httpClientService.post<SocialUser | TokenResponse>({
+      action: "google-login",
+      controller: "auth",
+    }, user)
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      this.alertifyService.message("Google ile giriş başarıyla sağlanmıştır.", {
+        messageType: MessageType.Success,
+        position: Position.TopRight
+      });
     }
     callBack();
   }
