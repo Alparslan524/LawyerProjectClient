@@ -14,7 +14,7 @@ export class SidebarComponent extends BaseComponent implements OnInit {
   title = 'LawyerProjectClient';
   constructor(spinner: NgxSpinnerService, private authService: AuthService, private router: Router, private alertifyService: AlertifyService) {
     super(spinner)
-    authService.identityCheck();
+    // authService.identityCheck();
   }
 
 

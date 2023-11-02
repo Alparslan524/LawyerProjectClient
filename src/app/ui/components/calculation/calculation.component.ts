@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/service/common/auth.service';
 export class CalculationComponent extends BaseComponent {
   constructor(spinner: NgxSpinnerService, private alertifyService: AlertifyService, private authService: AuthService) {
     super(spinner);
-    authService.identityCheck();
+    // authService.identityCheck();
   }
 
 }

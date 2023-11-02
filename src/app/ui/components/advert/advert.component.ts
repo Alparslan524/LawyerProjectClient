@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/service/common/auth.service';
 export class AdvertComponent extends BaseComponent {
   constructor(spinner: NgxSpinnerService, private authService: AuthService) {
     super(spinner);
-    authService.identityCheck();
+    // authService.identityCheck();
   }
 
 }

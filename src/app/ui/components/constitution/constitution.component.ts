@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/service/common/auth.service';
 export class ConstitutionComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private authService: AuthService) {
     super(spinner);
-    authService.identityCheck();
+    // authService.identityCheck();
   }
 
   ngOnInit(): void {

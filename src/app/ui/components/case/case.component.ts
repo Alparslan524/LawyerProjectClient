@@ -18,7 +18,7 @@ import { CaseService } from 'src/app/service/common/models/case.service';
 export class CaseComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService, private authService: AuthService) {
     super(spinner);
-    authService.identityCheck();
+    // authService.identityCheck();
   }
 
   cases: ListCase[];

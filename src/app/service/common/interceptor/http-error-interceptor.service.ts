@@ -4,21 +4,25 @@ import { Observable, catchError, of } from 'rxjs';
 import { AlertifyService, MessageType, Position } from '../alertify.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from 'src/app/base/base.component';
+import { UserService } from '../models/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorInterceptorService implements HttpInterceptor {
-  constructor(private alertifyService: AlertifyService, private spinner: NgxSpinnerService) { }
+  constructor(private alertifyService: AlertifyService, private spinner: NgxSpinnerService, private userService: UserService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     return next.handle(req).pipe(catchError(error => {
       switch (error.status) {
         case HttpStatusCode.Unauthorized:
-          this.alertifyService.message("Yetkisiz işlem. Bu işlemi yapmaya yetkiniz bulunmamaktadır!", {
+        this.alertifyService.message("Yetkisiz işlem. Bu işlemi yapmaya yetkiniz bulunmamaktadır!", {
             messageType: MessageType.Error,
             position: Position.BottomRight
+          });
+          this.userService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data => {
+            
           });
           break;
         case HttpStatusCode.InternalServerError:
