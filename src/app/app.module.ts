@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
@@ -15,6 +15,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { RegisterComponent } from './ui/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { HttpErrorInterceptorService } from './service/common/interceptor/http-error-interceptor.service';
 
 
 
@@ -50,6 +51,9 @@ import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig,
       ],
       onError: err => console.log(err)
     } as SocialAuthServiceConfig
+  },
+  {
+    provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptorService,multi:true
   }
   ],
   bootstrap: [AppComponent]
