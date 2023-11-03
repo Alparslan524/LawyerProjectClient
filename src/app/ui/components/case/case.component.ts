@@ -25,7 +25,7 @@ export class CaseComponent extends BaseComponent implements OnInit {
 
   async ngOnInit() {
     this.showSpinner(SpinnerType.SquareJellyBox);
-    this.cases = await this.caseService.readByUserId(2, () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
+    this.cases = await this.caseService.readByUserId("a76342da-8d4e-4344-9eff-2e7d5624b5d8", () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
       this.hideSpinner(SpinnerType.SquareJellyBox);
     });
   }

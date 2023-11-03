@@ -31,7 +31,7 @@ export class CaseService {
     });
   }
 
-  async readByUserId(id: number, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<ListCase[]> {
+  async readByUserId(id: string, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<ListCase[]> {
     const getObservable: Observable<ListCase[]> = this.httpClientService.get<ListCase[]>({
       controller: "cases",
       action: `getbyuserid/${id}`,

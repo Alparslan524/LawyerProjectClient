@@ -36,7 +36,7 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
   }
 
   create() {
-    debugger;
+    
     this.spinner.show(SpinnerType.SquareJellyBox);
 
     const create_case: CreateCase = new CreateCase();

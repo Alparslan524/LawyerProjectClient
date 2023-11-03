@@ -1,5 +1,5 @@
 export class CreateCase {
-    IdUserFK: number;
+    IdUserFK: string;
     CaseNumber: number;
     CaseNot: string;
     CaseDescription: string;

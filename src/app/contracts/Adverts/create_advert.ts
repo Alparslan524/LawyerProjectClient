@@ -1,6 +1,6 @@
 export class CreateAdvert {
     // Buraya api'nin göndereceği çekilde  fieldlar gelicek. Burdaki fieldlari le karşılayacaz
-    IdUserFK: number;
+    IdUserFK: string;
     CaseType: number;
     CaseDate: Date;
     Price: number;
