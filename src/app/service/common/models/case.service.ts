@@ -31,16 +31,15 @@ export class CaseService {
     });
   }
 
-  async readByUserId(id: string, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<ListCase[]> {
+  async readByUser(UserNameOrEmail: string, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<ListCase[]> {
     const getObservable: Observable<ListCase[]> = this.httpClientService.get<ListCase[]>({
       controller: "cases",
-      action: `getbyuserid/${id}`,
+      action: `getbyuserid/${UserNameOrEmail}`,
     });
     const cases: ListCase[] = await firstValueFrom(getObservable);
     successCallBack();
     return cases
   }
-
 
   async readPdf(id: number, successCallBack?: () => void): Promise<ListCasePdf[]> {
     const getObservable: Observable<ListCasePdf[]> = this.httpClientService.get<ListCasePdf[]>({
@@ -61,5 +60,5 @@ export class CaseService {
     await firstValueFrom(deleteObservable);
     successCallBack();
   }
-  
+
 }
