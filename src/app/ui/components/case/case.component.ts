@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
@@ -9,7 +9,6 @@ import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-di
 import { AuthService } from 'src/app/service/common/auth.service';
 import { DialogService } from 'src/app/service/common/dialog.service';
 import { CaseService } from 'src/app/service/common/models/case.service';
-import { GetUserNameService } from 'src/app/service/common/models/get-user-name.service';
 
 @Component({
   selector: 'app-case',
@@ -18,24 +17,21 @@ import { GetUserNameService } from 'src/app/service/common/models/get-user-name.
 })
 export class CaseComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService, private authService: AuthService,
-    private getUserNameService:GetUserNameService) {
+    private socialAuthService: SocialAuthService) {
     super(spinner);
     // authService.identityCheck();
   }
-  userNameOrEmail:string;
+
   cases: ListCase[];
 
   async ngOnInit() {
     this.showSpinner(SpinnerType.SquareJellyBox);
 
-    await this.getUserNameService.userNameOrEmail.subscribe(value => {
-      this.userNameOrEmail = value;
-    });//getUserNameService ile register componentten gelen veriyi yani avukatın userNameOrEmail bilgisini aldım
 
-    this.cases = await this.caseService.readByUser(this.userNameOrEmail, () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
+    this.cases = await this.caseService.readByUser(localStorage.getItem("userNameOrEmail"), () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
       this.hideSpinner(SpinnerType.SquareJellyBox);
     });
-    
+
   }
 
   fileUpload(id: number) {

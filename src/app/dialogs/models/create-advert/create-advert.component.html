@@ -1,12 +1,7 @@
 <h1 mat-dialog-title>İlan Oluşturma</h1>
 
 <div class="container">
-    <form [formGroup]="advertForm" (ngSubmit)="create()">
-        <mat-form-field class="advert-create"  appearance="outline">
-            <mat-label>IdUserFK</mat-label>
-            <input matInput type="text" min="0" value="0" formControlName="idUserFK" >
-          </mat-form-field>
-            
+    <form [formGroup]="advertForm" (ngSubmit)="create()">          
           <mat-form-field class="advert-create" appearance="outline">
             <mat-label>CaseType</mat-label>
             <mat-select  placeholder="CaseType Seçin" formControlName="caseType" >

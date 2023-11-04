@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from 'src/app/base/base.component';
 import { CreateCase } from 'src/app/contracts/Case/create_case';
@@ -26,7 +26,6 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
 
   ngOnInit(): void {
     this.caseForm = this.fb.group({
-      idUserFK: ['', Validators.required],
       caseNumber: ['', Validators.required],
       caseNot: ['', Validators.required],
       caseDescription: ['', Validators.required],
@@ -35,26 +34,27 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
     })
   }
 
-  create() {
-    
+  async create() {
+
     this.spinner.show(SpinnerType.SquareJellyBox);
 
     const create_case: CreateCase = new CreateCase();
-    create_case.IdUserFK = this.caseForm.get('idUserFK').value;
+    create_case.UserNameOrEmail = localStorage.getItem("userNameOrEmail");
     create_case.CaseNumber = this.caseForm.get('caseNumber').value;
     create_case.CaseNot = this.caseForm.get('caseNot').value;
     create_case.CaseDescription = this.caseForm.get('caseDescription').value;
     create_case.CaseType = this.getCaseTypeValue();
     create_case.CaseDate = this.caseForm.get('caseDate').value;
 
-    this.caseService.create(create_case, () => {
-      this.spinner.hide(SpinnerType.SquareJellyBox);
+    this.caseService.create(create_case, async () => {
       this.alertify.message("Dava Başarıyla Eklenmiştir!", {
         messageType: MessageType.Success,
         position: Position.TopRight
       });
+      setTimeout(() => {
+        location.reload();
+      }, 2000); // 2 saniye
     }, errorMessage => {
-      this.spinner.hide(SpinnerType.SquareJellyBox);
       this.alertify.message(errorMessage, {
         dismissOthers: true,
         position: Position.TopRight,

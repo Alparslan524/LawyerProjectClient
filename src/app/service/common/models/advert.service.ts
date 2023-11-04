@@ -12,7 +12,7 @@ export class AdvertService {
 
   constructor(private httpClientService: HttpClientService) { }
 
-  create(createAdvert: CreateAdvert, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
+  async create(createAdvert: CreateAdvert, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
     this.httpClientService.post({
       controller: "adverts",
       action: "createadvert"

@@ -1,12 +1,12 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { SpinnerType } from 'src/app/base/base.component';
 import { CreateAdvert } from 'src/app/contracts/Adverts/create_advert';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AdvertService } from 'src/app/service/common/models/advert.service';
 import { BaseDialog } from '../../base/base-dialog';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-advert',
@@ -19,13 +19,12 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
   caseTypes = ['Boş', 'Boşanma Davası', 'Tazminat Davası', 'Kira Davası'];
 
   constructor(dialogRef: MatDialogRef<CreateAdvertComponent>, private fb: FormBuilder,
-    private advertService: AdvertService, private alertify: AlertifyService, private spinner: NgxSpinnerService) {
+    private advertService: AdvertService, private alertify: AlertifyService, private spinner: NgxSpinnerService,) {
     super(dialogRef)
   }
 
   ngOnInit(): void {
     this.advertForm = this.fb.group({
-      idUserFK: ['', Validators.required],
       caseType: ['', Validators.required],
       caseDate: ['', Validators.required],
       price: ['', Validators.required],
@@ -37,9 +36,7 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
   }
 
 
-
-
-  create() {
+  async create() {
     this.spinner.show(SpinnerType.SquareJellyBox);
 
     let caseTypeValue: number;
@@ -63,7 +60,7 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
     }
 
     const create_advert: CreateAdvert = new CreateAdvert();
-    create_advert.IdUserFK = this.advertForm.get('idUserFK').value;
+    create_advert.UserNameOrEmail = localStorage.getItem("userNameOrEmail");
     create_advert.CaseType = caseTypeValue;
     create_advert.CaseDate = this.advertForm.get('caseDate').value;
     create_advert.Price = this.advertForm.get('price').value;
@@ -72,17 +69,16 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
     create_advert.District = this.advertForm.get('district').value;
     create_advert.CasePlace = this.advertForm.get('casePlace').value;
 
-    this.advertService.create(create_advert, () => {
-      this.spinner.hide(SpinnerType.SquareJellyBox);
+    this.advertService.create(create_advert, async () => {
       this.alertify.message("İlan başarıyla eklenmiştir!!", {
         messageType: MessageType.Success,
         position: Position.TopRight,
-        dismissOthers: true
       });
+      setTimeout(() => {
+        location.reload();
+      }, 2000); // 2 saniye
     }, errorMessage => {
-      this.spinner.hide(SpinnerType.SquareJellyBox);
       this.alertify.message(errorMessage, {
-        dismissOthers: true,
         position: Position.TopRight,
         messageType: MessageType.Error
       })

@@ -1,5 +1,5 @@
 export class CreateCase {
-    IdUserFK: string;
+    UserNameOrEmail: string;
     CaseNumber: number;
     CaseNot: string;
     CaseDescription: string;

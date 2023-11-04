@@ -14,11 +14,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent extends BaseComponent {
+export class FileUploadComponent  {
 
   constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private dialog: MatDialog,
-    private dialogService: DialogService, spinner: NgxSpinnerService) {
-    super(spinner)
+    private dialogService: DialogService, private spinner: NgxSpinnerService) {
   }
 
   @Input() options: Partial<FileUploadOptions>;
@@ -39,7 +38,7 @@ export class FileUploadComponent extends BaseComponent {
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
         {
-          this.showSpinner(SpinnerType.SquareJellyBoxWithText);
+          this.spinner.show(SpinnerType.SquareJellyBoxWithText);
           this.httpClientService.post({
             controller: this.options.controller,
             action: this.options.action,
@@ -50,13 +49,13 @@ export class FileUploadComponent extends BaseComponent {
               messageType: MessageType.Success,
               position: Position.TopRight
             })
-            this.hideSpinner(SpinnerType.SquareJellyBoxWithText);
+            this.spinner.hide(SpinnerType.SquareJellyBoxWithText);
           }, (errorResponse: HttpErrorResponse) => {
             this.alertifyService.message("Beklenmedik Hata!", {
               messageType: MessageType.Error,
               position: Position.TopRight
             })
-            this.hideSpinner(SpinnerType.SquareJellyBoxWithText);
+            this.spinner.hide(SpinnerType.SquareJellyBoxWithText);
           });
         }
       }
