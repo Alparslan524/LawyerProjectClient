@@ -9,6 +9,7 @@ import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-di
 import { AuthService } from 'src/app/service/common/auth.service';
 import { DialogService } from 'src/app/service/common/dialog.service';
 import { CaseService } from 'src/app/service/common/models/case.service';
+import { GetUserNameService } from 'src/app/service/common/models/get-user-name.service';
 
 @Component({
   selector: 'app-case',
@@ -16,18 +17,25 @@ import { CaseService } from 'src/app/service/common/models/case.service';
   styleUrls: ['./case.component.scss']
 })
 export class CaseComponent extends BaseComponent implements OnInit {
-  constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService, private authService: AuthService) {
+  constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService, private authService: AuthService,
+    private getUserNameService:GetUserNameService) {
     super(spinner);
     // authService.identityCheck();
   }
-
+  userNameOrEmail:string;
   cases: ListCase[];
 
   async ngOnInit() {
     this.showSpinner(SpinnerType.SquareJellyBox);
-    this.cases = await this.caseService.readByUser("alp123", () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
+
+    await this.getUserNameService.userNameOrEmail.subscribe(value => {
+      this.userNameOrEmail = value;
+    });//getUserNameService ile register componentten gelen veriyi yani avukatın userNameOrEmail bilgisini aldım
+
+    this.cases = await this.caseService.readByUser(this.userNameOrEmail, () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
       this.hideSpinner(SpinnerType.SquareJellyBox);
     });
+    
   }
 
   fileUpload(id: number) {

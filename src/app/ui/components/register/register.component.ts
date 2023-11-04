@@ -8,6 +8,7 @@ import { CreateUser } from 'src/app/contracts/User/create-user';
 import { User } from 'src/app/entities/User';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AuthService } from 'src/app/service/common/auth.service';
+import { GetUserNameService } from 'src/app/service/common/models/get-user-name.service';
 import { UserService } from 'src/app/service/common/models/user.service';
 
 @Component({
@@ -18,7 +19,7 @@ import { UserService } from 'src/app/service/common/models/user.service';
 export class RegisterComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private fb: FormBuilder, private userService: UserService, private alertifyService: AlertifyService
     , private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute,
-    private socialAuthService: SocialAuthService) {
+    private socialAuthService: SocialAuthService, private getUserNameService: GetUserNameService) {
     super(spinner)
     authService.identityCheck();
     socialAuthService.authState.subscribe(async (user: SocialUser) => {
@@ -48,7 +49,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 
   frmRegister: FormGroup
   frmLogin: FormGroup
-  ngOnInit(): void {
+  async ngOnInit() {
     {
       const container = document.getElementById('container');
       const registerBtn = document.getElementById('register');
@@ -118,8 +119,10 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       return;
     }
     this.showSpinner(SpinnerType.SquareJellyBox);
-    await this.userService.login(this.frmLogin.value.userNameOrEmail, this.frmLogin.value.passwordLogin, () => {
+    await this.userService.login(this.frmLogin.value.userNameOrEmail, this.frmLogin.value.passwordLogin, async  () => {
       this.authService.identityCheck()
+      
+      await this.getUserNameService.userNameOrEmail.next(this.frmLogin.get("userNameOrEmail").value);//getUserNameService ile veriyi case componente gönderdim
 
       var returnUrl: string;
       this.activatedRoute.queryParams.subscribe(params => {
