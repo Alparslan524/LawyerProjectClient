@@ -3,22 +3,22 @@
 <div class="container">
   <form [formGroup]="caseForm" (ngSubmit)="create()">  
         <mat-form-field class="case-create" appearance="outline">
-          <mat-label>CaseNumber</mat-label>
+          <mat-label>Dava Numarası</mat-label>
           <input matInput type="number" min="0" value="0" formControlName="caseNumber" >
         </mat-form-field>
         
         <mat-form-field class="case-create" appearance="outline">
-          <mat-label>CaseNot</mat-label>
+          <mat-label>Not</mat-label>
           <input matInput type="text" min="0" value="0" formControlName="caseNot" >
         </mat-form-field>
 
         <mat-form-field class="case-create" appearance="outline">
-          <mat-label>CaseDescription</mat-label>
+          <mat-label>Dava Açıklaması</mat-label>
           <input matInput formControlName="caseDescription" >
         </mat-form-field>
   
         <mat-form-field class="case-create" appearance="outline">
-          <mat-label>CaseType</mat-label>
+          <mat-label>Dava Tipi</mat-label>
           <mat-select  placeholder="CaseType Seçin" formControlName="caseType" >
             <mat-option *ngFor="let type of caseTypes" [value]="type">{{ type }}</mat-option>
           </mat-select>
