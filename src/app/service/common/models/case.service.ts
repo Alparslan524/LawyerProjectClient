@@ -51,13 +51,22 @@ export class CaseService {
     return cases;
   }
 
-  async deletePdf(id: number, pdfId: number,successCallBack?: () => void) {
+  async deletePdf(id: number, pdfId: number, successCallBack?: () => void) {
     const deleteObservable = this.httpClientService.delete({
       controller: "cases",
       action: "deletepdf",
       queryString: `pdfId=${pdfId}`
     }, id)
     await firstValueFrom(deleteObservable);
+    successCallBack();
+  }
+
+  async delete(id: number, successCallBack?: () => void,errorCallBack?: (errorMessage: string) => void) {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "cases",
+      action: `delete/${id}`
+    }, id)
+    await firstValueFrom(observable);
     successCallBack();
   }
 

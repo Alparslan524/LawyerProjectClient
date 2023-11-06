@@ -35,7 +35,7 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
   }
 
   async create() {
-
+    this.caseForm.disable();
     this.spinner.show(SpinnerType.SquareJellyBox);
 
     const create_case: CreateCase = new CreateCase();
@@ -46,14 +46,11 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
     create_case.CaseType = this.getCaseTypeValue();
     create_case.CaseDate = this.caseForm.get('caseDate').value;
 
-    this.caseService.create(create_case, async () => {
+    await this.caseService.create(create_case, async () => {
       this.alertify.message("Dava Başarıyla Eklenmiştir!", {
         messageType: MessageType.Success,
         position: Position.TopRight
-      });
-      setTimeout(() => {
-        location.reload();
-      }, 2000); // 2 saniye
+      })
     }, errorMessage => {
       this.alertify.message(errorMessage, {
         dismissOthers: true,
@@ -61,6 +58,9 @@ export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> impleme
         messageType: MessageType.Error
       })
     })
+    this.caseForm.reset();
+    this.caseForm.enable();
+    this.spinner.hide(SpinnerType.SquareJellyBox);
   }
 
   getCaseTypeValue(): number {

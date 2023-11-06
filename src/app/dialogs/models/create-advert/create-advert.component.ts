@@ -37,6 +37,7 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
 
 
   async create() {
+    this.advertForm.disable();
     this.spinner.show(SpinnerType.SquareJellyBox);
 
     let caseTypeValue: number;
@@ -69,19 +70,19 @@ export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> imp
     create_advert.District = this.advertForm.get('district').value;
     create_advert.CasePlace = this.advertForm.get('casePlace').value;
 
-    this.advertService.create(create_advert, async () => {
+    await this.advertService.create(create_advert, async () => {
       this.alertify.message("İlan başarıyla eklenmiştir!!", {
         messageType: MessageType.Success,
         position: Position.TopRight,
-      });
-      setTimeout(() => {
-        location.reload();
-      }, 2000); // 2 saniye
+      })
     }, errorMessage => {
       this.alertify.message(errorMessage, {
         position: Position.TopRight,
         messageType: MessageType.Error
       })
     })
+    this.advertForm.reset();
+    this.advertForm.enable();
+    this.spinner.hide(SpinnerType.SquareJellyBox);
   }
 }
