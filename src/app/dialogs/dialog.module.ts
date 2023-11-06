@@ -15,6 +15,8 @@ import { CreateAdvertComponent } from './models/create-advert/create-advert.comp
 import { CreateCaseComponent } from './models/create-case/create-case.component';
 import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -28,7 +30,7 @@ import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.compon
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, MatIconModule, MatSidenavModule,
+    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, MatIconModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule,
     FileUploadModule
 
 

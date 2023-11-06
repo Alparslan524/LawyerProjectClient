@@ -1,13 +1,45 @@
+// :host {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//   }
+
+//   .container{
+//     margin-top: 10px;
+//   }
+
+//   .advert-create{
+//     margin: 5px 5px 5px;
+//   }
+
+
+
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Orta hizalama */
+}
 
-  .container{
-    margin-top: 10px;
-  }
+.container {
+  margin-top: 10px;
+  width: 1000px;
+}
 
-  .advert-create{
-    margin: 5px 5px 5px;
-  }
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.advert-create {
+  width: 45%; /* Inputların genişliği */
+  margin: 5px;
+}
+
+.advertAdress{
+  width: 100%;
+}
+
+.btnCreateAdvert{
+  height: 56px;
+}

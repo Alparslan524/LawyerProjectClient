@@ -1,48 +1,69 @@
 <h1 mat-dialog-title>İlan Oluşturma</h1>
 
 <div class="container">
-    <form [formGroup]="advertForm" (ngSubmit)="create()">          
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>CaseType</mat-label>
-            <mat-select  placeholder="CaseType Seçin" formControlName="caseType" >
-              <mat-option *ngFor="let type of caseTypes" [value]="type">{{ type }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label> Dava Tarihi </mat-label>
-            <input matInput type="date" formControlName="caseDate">
-          </mat-form-field>
-          
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>Price</mat-label>
-            <input matInput type="number" min="0" value="0" formControlName="price" >
-          </mat-form-field>
-          
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>City</mat-label>
-            <input matInput formControlName="city" >
-          </mat-form-field>
-        
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address" >
-          </mat-form-field>
-        
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>District</mat-label>
-            <input matInput formControlName="district" >
-          </mat-form-field>
-        
-          <mat-form-field class="advert-create" appearance="outline">
-            <mat-label>CasePlace</mat-label>
-            <input matInput formControlName="casePlace"  >
-          </mat-form-field>
-        
-          <button mat-raised-button color="primary" class="btn advert-create" [disabled]="!advertForm.valid">İlan Oluştur </button>
-    </form>
+  <form [formGroup]="advertForm" (ngSubmit)="create()">
+    <div class="input-group">
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label>Dava Ücreti</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          value="0"
+          formControlName="price"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label>Dava Tipi</mat-label>
+        <mat-select placeholder="CaseType Seçin" formControlName="caseType">
+          <mat-option *ngFor="let type of caseTypes" [value]="type">{{
+            type
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label> Dava Tarihi </mat-label>
+        <input matInput type="date" formControlName="caseDate" />
+      </mat-form-field>
+
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label>Dava Yeri</mat-label>
+        <input matInput formControlName="casePlace" />
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label>İlçe</mat-label>
+        <input matInput formControlName="district" />
+      </mat-form-field>
+
+      <mat-form-field class="advert-create" appearance="outline">
+        <mat-label>İl</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="advertAdress" appearance="outline">
+        <mat-label>Adres</mat-label>
+        <textarea
+          style="height: 100px"
+          matInput
+          formControlName="address"
+          placeholder="Adres"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </form>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="close()">İptal</button>
+  <button mat-raised-button color="primary" (click)="create()" [disabled]="!advertForm.valid">
+    İlan Oluştur
+  </button>
 </div>

@@ -6,6 +6,8 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -16,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: CaseComponent }]),
-    MatCardModule, MatButtonModule,MatIconModule,
+    MatCardModule, MatButtonModule, MatIconModule, MatDatepickerModule, MatNativeDateModule,
     DialogModule
   ]
 })

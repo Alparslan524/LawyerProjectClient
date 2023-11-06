@@ -1,13 +1,28 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .container{
-    margin-top: 10px;
-  }
+.container{
+  width: 1000px;
+}
 
-  .case-create{
-    margin: 5px 5px 5px;
-  }
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.case-create {
+  width: 45%;
+  margin: 5px;
+}
+
+.caseDescription{
+  width: 100%;
+}
+
+.btnCreateCase{
+  height: 56px;
+}
