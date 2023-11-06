@@ -5,6 +5,6 @@ export class ListCase{
     caseDescription: string;
     caseType: number;
     caseDate: Date;
-    createDate: Date;
+    createdDate: Date;
     updatedDate: Date;
 }

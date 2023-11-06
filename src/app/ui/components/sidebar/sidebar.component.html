@@ -29,23 +29,20 @@
         >
       </li>
     </ul>
-    <div class="social_media">
-      <a href="#"><i class="bx bxl-meta" style="font-size: large"></i></a>
-      <a href="#"><i class="bx bx-x" style="font-size: large"></i></a>
-      <a href="#"><i class="bx bxl-instagram" style="font-size: large"></i></a>
+    <div class="signOut" style="width: 100%;" >
+      <button
+        mat-flat-button
+        color="warn"
+        style="float: right; position: relative; bottom: 5px; width: 100%; font-size: large;"
+        (click)="signOut()"
+      >
+        Çıkış Yap <i class="bx bx-log-out"></i>
+      </button>
     </div>
   </div>
   <div class="main_content">
     <div class="header" style="font-size: large">
       AvukatımCepte.com.tr'ye Hoşgeldiniz!
-      <button
-        mat-flat-button
-        color="warn"
-        style="float: right; position: relative; bottom: 5px"
-        (click)="signOut()"
-      >
-        Çıkış Yap <i class="bx bx-log-out"></i>
-      </button>
     </div>
     <div class="info">
       <router-outlet></router-outlet>
