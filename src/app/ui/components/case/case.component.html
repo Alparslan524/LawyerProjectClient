@@ -10,7 +10,14 @@
         {{case.caseType}}
     </p>
     <button mat-flat-button color="primary" (click)="fileUpload(case.objectId)"><i class='bx bxs-cloud-upload'></i> Dosya işlemleri</button>
-  </mat-card>
+    
+    <mat-card-actions style="margin-top: auto;" id="{{case.objectId}}">
+        <button mat-fab color="warn" style="position: relative; margin: auto;" (click)="delete(case.objectId , $event)" >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+
+</mat-card>
 
 
 <button type="button" class="btn btn-success bx" (click)="createCaseDialog()" > Dava Oluşturma butonu</button>
