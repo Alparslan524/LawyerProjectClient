@@ -31,12 +31,19 @@ export class SelectCasePdfDialogComponent extends BaseDialog<SelectCasePdfDialog
     action: `upload/${this.data}`,
     controller: "cases",
     explanation: "Dosyaları Seçiniz...",
+    afterClosed: ()=>{
+      this.getPdfFiles();
+    }
   }
 
   pdfFiles: ListCasePdf[];
 
   async ngOnInit() {
     this.spinner.show(SpinnerType.SquareJellyBox);
+    await this.getPdfFiles();
+  }
+
+  async getPdfFiles(){
     this.pdfFiles = await this.caseService.readPdf(this.data as number, () => {
       this.spinner.hide(SpinnerType.SquareJellyBox);
     });

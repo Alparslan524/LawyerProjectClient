@@ -62,7 +62,6 @@ export class CaseComponent extends BaseComponent implements OnInit {
     })
   }
 
-
   fileUpload(id: number) {
     this.dialogService.openDialog({
       componentType: SelectCasePdfDialogComponent,
