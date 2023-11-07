@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalculationComponent } from './calculation.component';
 import { RouterModule } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: "", component: CalculationComponent }])
+    RouterModule.forChild([{ path: "", component: CalculationComponent }]),
+    MatSidenavModule,
   ]
 })
 export class CalculationModule { }
