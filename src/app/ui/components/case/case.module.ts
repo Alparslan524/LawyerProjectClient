@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CaseComponent } from './case.component';
-import { RouterModule } from '@angular/router';
 import { DialogModule } from '@angular/cdk/dialog';
-import { MatCard, MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
+import { CaseComponent } from './case.component';
 
 
 
@@ -18,7 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: CaseComponent }]),
-    MatCardModule, MatButtonModule, MatIconModule, MatDatepickerModule, MatNativeDateModule,
+    MatCardModule, MatButtonModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule,
     DialogModule
   ]
 })

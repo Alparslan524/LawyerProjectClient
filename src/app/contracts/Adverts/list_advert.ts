@@ -7,6 +7,6 @@ export class ListAdvert {
     address: string;
     district: string;
     casePlace: string;
-    createDate: Date;
+    createdDate: Date;
     updatedDate: Date;
 }

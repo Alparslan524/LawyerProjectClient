@@ -20,7 +20,7 @@ import { ListComponent } from './list/list.component';
   declarations: [
     AdvertComponent,
     ListComponent,
-    DeleteDirective
+    DeleteDirective,
 
   ],
   imports: [

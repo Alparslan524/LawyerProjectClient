@@ -2,6 +2,7 @@ import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { async } from 'rxjs';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
 import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert-dialog/create-advert-dialog.component';
@@ -17,14 +18,15 @@ import { AdvertService } from 'src/app/service/common/models/advert.service';
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(spinner: NgxSpinnerService, private advertService: AdvertService, private alertifyService: AlertifyService, private dialogService:DialogService) {
+  constructor(spinner: NgxSpinnerService, private advertService: AdvertService, private alertifyService: AlertifyService, private dialogService: DialogService) {
     super(spinner);
   }
 
-  
+
 
   displayedColumns: string[] = ['objectId', 'caseType', 'caseDate', 'price', 'city', 'address', 'district', 'casePlace', 'createDate', 'updatedDate', 'delete'];
   dataSource: MatTableDataSource<ListAdvert> = null;
+  adverts: ListAdvert[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,9 +34,12 @@ export class ListComponent extends BaseComponent implements OnInit {
     await this.getAdverts();
   }
 
-  createAdvertDialog(){
+  createAdvertDialog() {
     this.dialogService.openDialog({
-      componentType:CreateAdvertDialogComponent
+      componentType: CreateAdvertDialogComponent,
+      afterClosed: () => {
+        this.getAdverts();
+      }
     })
   }
 
@@ -49,6 +54,7 @@ export class ListComponent extends BaseComponent implements OnInit {
       }));
     this.dataSource = new MatTableDataSource<ListAdvert>(allAdverts.adverts);
     this.paginator.length = allAdverts.totalCount;
+    this.adverts = this.dataSource.data;
   }
 
   async pageChanged() {

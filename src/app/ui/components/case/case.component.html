@@ -7,100 +7,107 @@
   <link rel="stylesheet" href="case.component.scss" />
 </head>
 
-<!-- İlan ekleme butonları vs burada. -->
-<div class="pdf-card">
-  <div class="card-container">
-    <div>
-      <h1 style="color: white">Dava Ekleme</h1>
-    </div>
-    <br />
-    <div>
-      <h3 style="font-size: large">
-        Dava ekleme butonuna tıkladıktan sonra dava ile ilgili istenilen
-        bilgileri girerek, davanızın dosyalarını yükleyebilecek ve ilgili
-        davanın bilgilerini görüntüleyebilecek şekilde sisteme davanızı eklemiş
-        olursunuz.
-      </h3>
-    </div>
-
-    <div *ngIf="cases == null">
-      <h1>
-        Şu an hiç davanız yok. Davalar ekleyerek sağ tarafta
-        görüntüleyebilirsiniz.
-      </h1>
-    </div>
-
-    <div class="dateButton" style="margin-bottom: 0; text-align: center">
-      <ul>
-        <button
-          type="button"
-          class="btn btn-success bx"
-          (click)="createCaseDialog()"
-        >
-          Dava Oluşturma butonu
-        </button>
+<mat-drawer-container class="case-container">
+  <mat-drawer-content>
+    <div class="pdf-card">
+      <div class="card-container">
+        <div>
+          <h1 style="color: white">Dava Ekleme</h1>
+        </div>
         <br />
-        <br />
-        <button
-          type="button"
-          class="btn btn-success bx"
-          (click)="createAdvertDialog()"
-        >
-          İlan Oluşturma butonu
-        </button>
-      </ul>
-    </div>
-  </div>
-</div>
+        <div>
+          <h3 style="font-size: large">
+            Dava ekleme butonuna tıkladıktan sonra dava ile ilgili istenilen
+            bilgileri girerek, davanızın dosyalarını yükleyebilecek ve ilgili
+            davanın bilgilerini görüntüleyebilecek şekilde sisteme davanızı
+            eklemiş olursunuz.
+          </h3>
+        </div>
 
-<div class="pdf-card" *ngFor="let case of cases">
-  <div class="card-container">
-    <div>
-      <h1 style="color: white">{{ case.caseNumber }}</h1>
-    </div>
+        <div *ngIf="cases == null">
+          <h1>
+            Şu an hiç davanız yok. Davalar ekleyerek sağ tarafta
+            görüntüleyebilirsiniz.
+          </h1>
+        </div>
 
-    <div>
-      <h2 *ngIf="case.caseType === 0">Boş</h2>
-      <h2 *ngIf="case.caseType === 1">Boşanma Davası</h2>
-      <h2 *ngIf="case.caseType === 2">Tazminat Davası</h2>
-      <h2 *ngIf="case.caseType === 3">Kira Davası</h2>
-    </div>
-
-    <div>
-      <p>{{ case.caseNot }}</p>
-    </div>
-
-    <div style="max-height: 500px; height: 230px; margin-top: 70px">
-      <p>{{ case.caseDescription }}</p>
-    </div>
-
-    <div class="dateButton" style="margin-bottom: 0">
-      <div class="primary">
-        <div style="display: flex; justify-content: space-between">
-          <p>
-            Dava Tarihi <br />
-            {{ case.caseDate | date : "dd-MM-yyyy" }}
-          </p>
-          <div style="text-align: right">
-            <p>
-              Oluşturma Tarihi <br />
-              {{ case.createdDate | date : "dd-MM-yyyy HH:mm" }}
-            </p>
-          </div>
+        <div class="dateButton" style="margin-bottom: 0; text-align: center">
+          <ul>
+            <button
+              type="button"
+              class="btn btn-success bx"
+              (click)="createCaseDialog()"
+            >
+              Dava Oluşturma butonu
+            </button>
+            <br />
+            <br />
+            <button
+              type="button"
+              class="btn btn-success bx"
+              (click)="createAdvertDialog()"
+            >
+              İlan Oluşturma butonu
+            </button>
+          </ul>
         </div>
       </div>
-      <ul>
-        <div class="primary ghost">
-          <div style="display: flex; justify-content: space-between">
-            <button mat-fab color="warn" (click)="delete(case.objectId)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-fab color="primary" (click)="fileUpload(case.objectId)">
-              <mat-icon>cloud_upload</mat-icon>
-            </button>
-          </div>
-        </div>
-      </ul>
     </div>
-  </div>
-</div>
+
+    <div class="pdf-card" *ngFor="let case of cases">
+      <div class="card-container">
+        <div>
+          <h1 style="color: white">{{ case.caseNumber }}</h1>
+        </div>
+
+        <div>
+          <h2 *ngIf="case.caseType === 0">Boş</h2>
+          <h2 *ngIf="case.caseType === 1">Boşanma Davası</h2>
+          <h2 *ngIf="case.caseType === 2">Tazminat Davası</h2>
+          <h2 *ngIf="case.caseType === 3">Kira Davası</h2>
+        </div>
+
+        <div>
+          <p>{{ case.caseNot }}</p>
+        </div>
+
+        <div style="max-height: 500px; height: 230px; margin-top: 70px">
+          <p>{{ case.caseDescription }}</p>
+        </div>
+
+        <div class="dateButton" style="margin-bottom: 0">
+          <div class="primary">
+            <div style="display: flex; justify-content: space-between">
+              <p>
+                Dava Tarihi <br />
+                {{ case.caseDate | date : "dd-MM-yyyy" }}
+              </p>
+              <div style="text-align: right">
+                <p>
+                  Oluşturma Tarihi <br />
+                  {{ case.createdDate | date : "dd-MM-yyyy HH:mm" }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <ul>
+            <div class="primary ghost">
+              <div style="display: flex; justify-content: space-between">
+                <button mat-fab color="warn" (click)="delete(case.objectId)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button
+                  mat-fab
+                  color="primary"
+                  (click)="fileUpload(case.objectId)"
+                >
+                  <mat-icon>cloud_upload</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
