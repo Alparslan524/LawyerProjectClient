@@ -1,6 +1,6 @@
 export class User{
-    FirstName:string;
-    LastName:string;
-    Email:string;
-    TelephoneNumber:string;
+    firstName:string;
+    lastName:string;
+    email:string;
+    phoneNumber:string;
 }

@@ -37,7 +37,7 @@ export class CaseComponent extends BaseComponent implements OnInit {
     this.cases = await this.caseService.readByUser(localStorage.getItem("userNameOrEmail"), () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
       this.hideSpinner(SpinnerType.SquareJellyBox);
     });
-    this.cases = this.cases.slice().reverse();
+    this.cases = this.cases.reverse();
   }
 
   delete(caseId: number) {

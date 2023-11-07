@@ -46,7 +46,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   async getAdverts() {
     this.showSpinner(SpinnerType.SquareJellyBox);
     const allAdverts: { totalCount: number, adverts: ListAdvert[] } = await this.advertService.read(this.paginator ? this.paginator.pageIndex : 0,
-      this.paginator ? this.paginator.pageSize : 15, () => this.hideSpinner(SpinnerType.SquareJellyBox),
+      this.paginator ? this.paginator.pageSize : 60, () => this.hideSpinner(SpinnerType.SquareJellyBox),
       errorMessage => this.alertifyService.message(errorMessage, {
         dismissOthers: true,
         messageType: MessageType.Error,
@@ -55,6 +55,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dataSource = new MatTableDataSource<ListAdvert>(allAdverts.adverts);
     this.paginator.length = allAdverts.totalCount;
     this.adverts = this.dataSource.data;
+    this.adverts = this.adverts.reverse();
   }
 
   async pageChanged() {

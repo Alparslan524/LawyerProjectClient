@@ -67,23 +67,125 @@
 
 <div class="advert-card" *ngFor="let advert of adverts">
   <div class="advert-card-container">
-    <div>
-      <h1 style="color: black">İlanlar</h1>
-    </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-6">asd</div>
-        <div class="col-md-6">dsa</div>
+        <div class="col-md-5">
+          <div class="advert-user-card">
+            <div class="advert-user-card-container">
+              <div>
+                <br /><br />
+                <h1 style="color: white; margin: 3px">
+                  İlan Sahibinin Bilgileri
+                </h1>
+              </div>
+              <br /><br /><br />
+              <div style="color: white; text-align: left; padding: 10px">
+                <h2>Avukatın;</h2>
+                <h2>Adı: {{ advert.user.firstName }}</h2>
+                <h2>Soyadı: {{ advert.user.lastName }}</h2>
+                <h2>E-Mail: {{ advert.user.email }}</h2>
+                <h2>Telefon: {{ advert.user.phoneNumber }}</h2>
+              </div>
+              <button
+                style="width: 200px; margin-top: 50px"
+                mat-flat-button
+                color="primary"
+              >
+                İletişime Geç
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="advert-info-card">
+            <div class="advert-info-card-container">
+              <div style="margin-bottom: 100px">
+                <br /><br />
+                <h1 style="color: white; margin: 3px; margin-bottom: 50px">
+                  Dava Bilgileri
+                </h1>
+              </div>
+
+              <div class="container" style="color: white;">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div>
+                      <h2 *ngIf="advert.caseType === 0">Boş</h2>
+                      <h2 *ngIf="advert.caseType === 1">
+                        Boşanma Davası
+                      </h2>
+                      <h2 *ngIf="advert.caseType === 2">
+                        Tazminat Davası
+                      </h2>
+                      <h2 *ngIf="advert.caseType === 3">
+                        Kira Davası
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <h1 style="color: white; margin: 3px">
+                      {{ advert.price | number : "1.2-2" }} TL
+                    </h1>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h2>Dava Tarihi: <br>{{ advert.caseDate | date }}</h2>
+                  </div>
+                  <div class="col-sm-6">
+                    <h2>
+                      İlan Oluşturma Tarihi: <br>{{ advert.createdDate | date }}
+                    </h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h2>Şehir: <br>{{ advert.city }}/ {{ advert.district }}</h2>
+                  </div>
+                  <div class="col-sm-6">
+                    <h2>Dava Yeri: <br>{{ advert.casePlace }}</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h2>Adres: {{ advert.address }}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div>
+                <br /><br />
+                <h1 style="color: white; margin: 3px; margin-bottom: 50px">
+                  Dava Bilgileri
+                </h1>
+                <h1 style="color: white; margin: 3px">
+                  {{ advert.price | number : "1.2-2" }} TL
+                </h1>
+              </div>
+              <div style="color: white; padding: 10px">
+                <div>
+                  <h2 *ngIf="advert.caseType === 0">Dava Tipi: Boş</h2>
+                  <h2 *ngIf="advert.caseType === 1">Dava Tipi: Boşanma Davası</h2>
+                  <h2 *ngIf="advert.caseType === 2">Dava Tipi: Tazminat Davası</h2>
+                  <h2 *ngIf="advert.caseType === 3">Dava Tipi: Kira Davası</h2>
+                </div>
+
+                <h2>Dava Tarihi: {{ advert.caseDate | date }}</h2>
+                <h2>Şehir: {{ advert.city }}</h2>
+                <h2>Adres: {{ advert.address }}</h2>
+                <h2>İlçe: {{ advert.district }}</h2>
+                <h2>Dava Yeri: {{ advert.casePlace }}</h2>
+                <h2>Oluşturulma Tarihi: {{ advert.createdDate | date }}</h2>
+              </div> -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
-
-<div class="mat-elevation-z8">
+<!-- <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="objectId">
       <th mat-header-cell *matHeaderCellDef>objectId</th>
@@ -153,14 +255,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
-  
-</div>
+</div> -->
 
 <mat-paginator
-    (page)="pageChanged()"
-    [pageSizeOptions]="[15, 30, 60]"
-    showFirstLastButtons
-    aria-label="Sayfa seçin"
-  >
-  </mat-paginator>
+  (page)="pageChanged()"
+  [pageSizeOptions]="[60, 30, 15]"
+  showFirstLastButtons
+  aria-label="Sayfa seçin"
+>
+</mat-paginator>
