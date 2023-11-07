@@ -1,12 +1,11 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListCase } from 'src/app/contracts/Case/list_case';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
-import { CreateAdvertComponent } from 'src/app/dialogs/models/create-advert/create-advert.component';
-import { CreateCaseComponent } from 'src/app/dialogs/models/create-case/create-case.component';
+import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert-dialog/create-advert-dialog.component';
+import { CreateCaseDialogComponent } from 'src/app/dialogs/models/create-case/create-case-dialog.component';
 import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AuthService } from 'src/app/service/common/auth.service';
@@ -38,12 +37,13 @@ export class CaseComponent extends BaseComponent implements OnInit {
     this.cases = await this.caseService.readByUser(localStorage.getItem("userNameOrEmail"), () => {//Buradaki id yi el ile değil o an giriş yapan kullanıcının id si olması lazım
       this.hideSpinner(SpinnerType.SquareJellyBox);
     });
+    this.cases = this.cases.slice().reverse();
   }
 
   delete(caseId: number) {
     this.dialogService.openDialog({
       componentType: DeleteDialogComponent,
-      data:DeleteState.Yes,
+      data: DeleteState.Yes,
       afterClosed: async () => {
         this.showSpinner(SpinnerType.SquareJellyBox);
         await this.caseService.delete(caseId, async () => {
@@ -68,14 +68,17 @@ export class CaseComponent extends BaseComponent implements OnInit {
       componentType: SelectCasePdfDialogComponent,
       data: id,
       options: {
-        width: '1400px'
+        width: '1400px',
+        position: {
+          left: "300px"
+        }
       }
     })
   }
 
   createCaseDialog() {
     this.dialogService.openDialog({
-      componentType: CreateCaseComponent,
+      componentType: CreateCaseDialogComponent,
       afterClosed: async () => {
         this.getCase();
       }
@@ -84,7 +87,7 @@ export class CaseComponent extends BaseComponent implements OnInit {
 
   createAdvertDialog() {
     this.dialogService.openDialog({
-      componentType: CreateAdvertComponent
+      componentType: CreateAdvertDialogComponent
     })
   }
 

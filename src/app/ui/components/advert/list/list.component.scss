@@ -2,3 +2,38 @@ table {
     width: 100%;
   }
   
+  @import url("https://fonts.googleapis.com/css?family=Montserrat");
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+p {
+  color: white;
+}
+
+.pdf-card {
+  margin: 10px;
+  float: left;
+}
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+* {
+  box-sizing: border-box;
+}
+
+.card-container {
+  background-color: #231e39;
+  border-radius: 25px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+  color: #b3b8cd;
+  padding: 30px 0 0;
+  position: relative;
+  width: 350px;
+  height: 600px;
+  max-width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  overflow: hidden;
+}

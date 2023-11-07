@@ -9,7 +9,7 @@ import { SidebarComponent } from './ui/components/sidebar/sidebar.component';
 
 const routes: Routes = [
 
-  { path: "", component:RegisterComponent},
+  { path: "", component:RegisterComponent, pathMatch: 'full'},
   {
     path: "sidebar", component: SidebarComponent, canActivate: [AuthGuard], children: [
       { path: "advert", loadChildren: () => import("./ui/components/advert/advert.module").then(module => module.AdvertModule), canActivate: [AuthGuard] },

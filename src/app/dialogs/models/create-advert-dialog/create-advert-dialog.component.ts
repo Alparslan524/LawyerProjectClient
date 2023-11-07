@@ -10,15 +10,15 @@ import { BaseDialog } from '../../base/base-dialog';
 
 @Component({
   selector: 'app-create-advert',
-  templateUrl: './create-advert.component.html',
-  styleUrls: ['./create-advert.component.scss']
+  templateUrl: './create-advert-dialog.component.html',
+  styleUrls: ['./create-advert-dialog.component.scss']
 })
-export class CreateAdvertComponent extends BaseDialog<CreateAdvertComponent> implements OnInit {
+export class CreateAdvertDialogComponent extends BaseDialog<CreateAdvertDialogComponent> implements OnInit {
 
   advertForm: FormGroup;
   caseTypes = ['Boş', 'Boşanma Davası', 'Tazminat Davası', 'Kira Davası'];
 
-  constructor(dialogRef: MatDialogRef<CreateAdvertComponent>, private fb: FormBuilder,
+  constructor(dialogRef: MatDialogRef<CreateAdvertDialogComponent>, private fb: FormBuilder,
     private advertService: AdvertService, private alertify: AlertifyService, private spinner: NgxSpinnerService,) {
     super(dialogRef)
   }

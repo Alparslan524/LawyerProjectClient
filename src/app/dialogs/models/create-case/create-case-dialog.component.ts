@@ -11,11 +11,11 @@ import { BaseDialog } from '../../base/base-dialog';
 
 @Component({
   selector: 'app-create-case',
-  templateUrl: './create-case.component.html',
-  styleUrls: ['./create-case.component.scss']
+  templateUrl: './create-case-dialog.component.html',
+  styleUrls: ['./create-case-dialog.component.scss']
 })
-export class CreateCaseComponent extends BaseDialog<CreateCaseComponent> implements OnInit {
-  constructor(dialogRef: MatDialogRef<CreateCaseComponent>, private fb: FormBuilder, private spinner: NgxSpinnerService,
+export class CreateCaseDialogComponent extends BaseDialog<CreateCaseDialogComponent> implements OnInit {
+  constructor(dialogRef: MatDialogRef<CreateCaseDialogComponent>, private fb: FormBuilder, private spinner: NgxSpinnerService,
     private caseService: CaseService, private alertify: AlertifyService) {
     super(dialogRef);
   }

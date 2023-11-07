@@ -8,40 +8,52 @@
 </head>
 
 <!-- İlan ekleme butonları vs burada. -->
-<div class="pdf-card"> 
-    <div class="card-container">
-      <div>
-        <h1 style="color: white">Dava Ekleme</h1>
-      </div>
-      <br>
-      <div>
-        <h3 style="font-size: large;"> Dava ekleme butonuna tıkladıktan sonra dava ile ilgili istenilen bilgileri girerek, 
-            davanızın dosyalarını yükleyebilecek ve ilgili davanın 
-            bilgilerini görüntüleyebilecek şekilde sisteme davanızı eklemiş olursunuz.
-        </h3>
-      </div>
-      
-      <div *ngIf="cases == null"><h1>Şu an hiç davanız yok. Davalar ekleyerek sağ tarafta görüntüleyebilirsiniz.</h1></div>
+<div class="pdf-card">
+  <div class="card-container">
+    <div>
+      <h1 style="color: white">Dava Ekleme</h1>
+    </div>
+    <br />
+    <div>
+      <h3 style="font-size: large">
+        Dava ekleme butonuna tıkladıktan sonra dava ile ilgili istenilen
+        bilgileri girerek, davanızın dosyalarını yükleyebilecek ve ilgili
+        davanın bilgilerini görüntüleyebilecek şekilde sisteme davanızı eklemiş
+        olursunuz.
+      </h3>
+    </div>
 
-      <div class="dateButton" style="margin-bottom: 0; text-align: center;">
-        <ul>
-            <button type="button" class="btn btn-success bx" (click)="createCaseDialog()">
-                Dava Oluşturma butonu
-              </button>
-              <br />
-              <br />
-              <button type="button" class="btn btn-success bx" (click)="createAdvertDialog()">
-                İlan Oluşturma butonu
-              </button>
-        </ul>
-        
-      </div>
+    <div *ngIf="cases == null">
+      <h1>
+        Şu an hiç davanız yok. Davalar ekleyerek sağ tarafta
+        görüntüleyebilirsiniz.
+      </h1>
+    </div>
+
+    <div class="dateButton" style="margin-bottom: 0; text-align: center">
+      <ul>
+        <button
+          type="button"
+          class="btn btn-success bx"
+          (click)="createCaseDialog()"
+        >
+          Dava Oluşturma butonu
+        </button>
+        <br />
+        <br />
+        <button
+          type="button"
+          class="btn btn-success bx"
+          (click)="createAdvertDialog()"
+        >
+          İlan Oluşturma butonu
+        </button>
+      </ul>
     </div>
   </div>
+</div>
 
-
-
-<div class="pdf-card" *ngFor="let case of cases.slice().reverse()">
+<div class="pdf-card" *ngFor="let case of cases">
   <div class="card-container">
     <div>
       <h1 style="color: white">{{ case.caseNumber }}</h1>
@@ -58,7 +70,7 @@
       <p>{{ case.caseNot }}</p>
     </div>
 
-    <div style="max-height: 500px; height: 230px; margin-top: 70px;">
+    <div style="max-height: 500px; height: 230px; margin-top: 70px">
       <p>{{ case.caseDescription }}</p>
     </div>
 
