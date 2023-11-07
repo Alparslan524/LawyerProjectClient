@@ -46,7 +46,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   async getAdverts() {
     this.showSpinner(SpinnerType.SquareJellyBox);
     const allAdverts: { totalCount: number, adverts: ListAdvert[] } = await this.advertService.read(this.paginator ? this.paginator.pageIndex : 0,
-      this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.SquareJellyBox),
+      this.paginator ? this.paginator.pageSize : 15, () => this.hideSpinner(SpinnerType.SquareJellyBox),
       errorMessage => this.alertifyService.message(errorMessage, {
         dismissOthers: true,
         messageType: MessageType.Error,

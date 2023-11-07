@@ -1,3 +1,5 @@
+import { User } from "../User/User";
+
 export class ListAdvert {
     objectId: number;
     caseType: number;
@@ -9,4 +11,5 @@ export class ListAdvert {
     casePlace: string;
     createdDate: Date;
     updatedDate: Date;
+    user:User;
 }
