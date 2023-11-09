@@ -1,6 +1,6 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
@@ -24,8 +24,8 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     socialAuthService.authState.subscribe(async (user: SocialUser) => {
       if (user) {
         this.showSpinner(SpinnerType.SquareJellyBox);
-        localStorage.setItem("userNameOrEmail",user.email)
-        switch (user.provider) { 
+        localStorage.setItem("userNameOrEmail", user.email)
+        switch (user.provider) {
           case "GOOGLE":
             await userService.googleLogin(user, () => {
               this.authService.identityCheck();
@@ -52,6 +52,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 
   frmRegister: FormGroup
   frmLogin: FormGroup
+
   async ngOnInit() {
     {
       const container = document.getElementById('container');
@@ -88,10 +89,20 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   submittedRegister: boolean = false;
   async onSubmitRegister(user: User) {
     this.showSpinner(SpinnerType.SquareJellyBox);
+    debugger;
+
     this.submittedRegister = true;
-    if (this.frmRegister.invalid) {
+
+    if (!this.frmRegister.valid) {
+      this.hideSpinner(SpinnerType.SquareJellyBox);
+      this.alertifyService.message("Bütün bilgileri doldurunuz!", {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.TopRight
+      })
       return;
     }
+
     const result: CreateUser = await this.userService.create(user);
 
     if (result.success) {
@@ -108,6 +119,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       })
       this.hideSpinner(SpinnerType.SquareJellyBox);
     }
+    this.frmRegister.reset();
   }
 
 
@@ -117,15 +129,24 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 
   submittedLogin: boolean = false;
   async onSubmitLogin(user: User) {
+    this.showSpinner(SpinnerType.SquareJellyBox);
+
     this.submittedLogin = true;
+
     if (this.frmLogin.invalid) {
+      this.hideSpinner(SpinnerType.SquareJellyBox);
+      this.alertifyService.message("Kullanıcı adı ve şifreyi doldurunuz!", {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.TopRight
+      })
       return;
     }
-    this.showSpinner(SpinnerType.SquareJellyBox);
+
     await this.userService.login(this.frmLogin.value.userNameOrEmail, this.frmLogin.value.passwordLogin, async () => {
       this.authService.identityCheck()
 
-      localStorage.setItem("userNameOrEmail",this.frmLogin.get("userNameOrEmail").value)
+      localStorage.setItem("userNameOrEmail", this.frmLogin.get("userNameOrEmail").value)
 
       var returnUrl: string;
       this.activatedRoute.queryParams.subscribe(params => {
@@ -142,7 +163,5 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       this.hideSpinner(SpinnerType.SquareJellyBox);
     })
   }
-
-
 
 }

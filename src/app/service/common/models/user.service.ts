@@ -52,7 +52,8 @@ export class UserService {
 
       this.alertifyService.message("Google ile giriş başarıyla sağlanmıştır.", {
         messageType: MessageType.Success,
-        position: Position.TopRight
+        position: Position.TopRight,
+        dismissOthers:true
       });
     }
     callBack();

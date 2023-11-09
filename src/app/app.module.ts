@@ -16,6 +16,7 @@ import { RegisterComponent } from './ui/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { HttpErrorInterceptorService } from './service/common/interceptor/http-error-interceptor.service';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -28,7 +29,7 @@ import { HttpErrorInterceptorService } from './service/common/interceptor/http-e
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     AppRoutingModule, ReactiveFormsModule,
     AdminModule, UiModule,
-    MatSidenavModule,
+    MatSidenavModule,MatButtonModule,
     NgxSpinnerModule,
     JwtModule.forRoot({
       config: {
@@ -46,7 +47,7 @@ import { HttpErrorInterceptorService } from './service/common/interceptor/http-e
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider("94058850904-dajtenp0d9a80o4u89gq9j7311eo2k2n.apps.googleusercontent.com")
+          provider: new GoogleLoginProvider("855017375266-l577p56g8mgvmpk8bsscdqjcvmqie8g9.apps.googleusercontent.com")
         }
       ],
       onError: err => console.log(err)

@@ -1,5 +1,5 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
@@ -23,7 +23,9 @@ export class SidebarComponent extends BaseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
+
+
   }
 
   async signOut() {
@@ -42,10 +44,30 @@ export class SidebarComponent extends BaseComponent implements OnInit {
         this.router.navigate([""])
         this.alertifyService.message("Oturum kapatıldı", {
           messageType: MessageType.Success,
-          position: Position.TopRight
+          position: Position.TopRight,
+          dismissOthers:true
         });
       }
     })
     this.hideSpinner(SpinnerType.SquareJellyBox);
+  }
+
+  @HostListener('click', ['$event'])
+  onLiClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const liElement = target.closest('li');
+
+    if (liElement) {
+      this.changeColor(liElement);
+    }
+  }
+
+  changeColor(element: HTMLElement): void {
+    // Diğer öğelerin rengini eski haline getiriyoruz
+    const allItems = document.querySelectorAll('.sidebar ul li');
+    allItems.forEach(item => item.classList.remove('selected'));
+
+    // Tıklanan öğenin rengini değiştiriyoruz
+    element.classList.add('selected');
   }
 }
