@@ -24,7 +24,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['objectId', 'caseType', 'caseDate', 'price', 'city', 'address', 'district', 'casePlace', 'createDate', 'updatedDate', 'delete'];
+  
   dataSource: MatTableDataSource<ListAdvert> = null;
   adverts: ListAdvert[];
 
@@ -32,15 +32,6 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAdverts();
-  }
-
-  createAdvertDialog() {
-    this.dialogService.openDialog({
-      componentType: CreateAdvertDialogComponent,
-      afterClosed: () => {
-        this.getAdverts();
-      }
-    })
   }
 
   async getAdverts() {

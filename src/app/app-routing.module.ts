@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: "calculation", loadChildren: () => import("./ui/components/calculation/calculation.module").then(module => module.CalculationModule), canActivate: [AuthGuard] },
       { path: "constitution", loadChildren: () => import("./ui/components/constitution/constitution.module").then(module => module.ConstitutionModule), canActivate: [AuthGuard] },
       { path: "case", loadChildren: () => import("./ui/components/case/case.module").then(module => module.CaseModule), canActivate: [AuthGuard] },
+      { path: "myadvert", loadChildren: () => import("./ui/components/my-advert/my-advert.module").then(module => module.MyAdvertModule), canActivate: [AuthGuard] },
       { path: "news", loadChildren: () => import("./ui/components/news/news.module").then(module => module.NewsModule), canActivate: [AuthGuard] },
       {
         path: "admin", component: LayoutComponent, children: [

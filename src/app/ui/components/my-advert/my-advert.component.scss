@@ -1,5 +1,57 @@
+.myadvert-container {
+  width: 99%;
+  height: 600pt;
+  margin: 10px;
+  // border: 1px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-card {
+  margin-right: 20px;
+  float: left;
+}
+
+.first-card-container {
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+  color: #b3b8cd;
+  padding: 30px 0 0;
+  position: relative;
+  width: 1100px;
+  height: 800px;
+  max-width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  margin-left: 20px;
+  overflow: hidden;
+}
+
+.advert-create-card {
+  margin: 10px;
+  float: left;
+}
+
+.advert-create-card-container {
+  background-color: #231e39;
+  border-radius: 25px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+  color: #b3b8cd;
+  padding: 30px 0 0;
+  position: relative;
+  width: 350px;
+  height: 600px;
+  max-width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  margin-left: 20px;
+  overflow: hidden;
+}
+
 .advert-card-container {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border-radius: 25px;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
   color: #b3b8cd;
@@ -12,38 +64,17 @@
   margin: 20px 0;
   margin-left: 20px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-
-.advert-user-card{
+.advert-info-card {
   margin: 10px;
   float: left;
 }
 
-.advert-user-card-container{
-  background-color: #231e39;
-  border-radius: 25px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
-  color: #b3b8cd;
-  padding: 30px 0 0;
-  padding-top: 0px;
-  position: relative;
-  width: 350px;
-  height: 600px;
-  max-width: 100%;
-  text-align: center;
-  margin: 20px 0;
-  margin-left: 20px;
-  overflow: hidden;
-}
-
-.advert-info-card{
-  margin: 10px;
-  float: left;
-}
-
-.advert-info-card-container{
+.advert-info-card-container {
   background-color: #231e39;
   border-radius: 25px;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
@@ -55,11 +86,9 @@
   height: 600px;
   max-width: 100%;
   text-align: center;
-  margin: 20px 0;
-  margin-left: 20px;
   overflow: hidden;
 }
 
-.row{
+.row {
   margin: 30px;
 }

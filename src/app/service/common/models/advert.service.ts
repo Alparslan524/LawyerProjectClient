@@ -4,6 +4,7 @@ import { CreateAdvert } from 'src/app/contracts/Adverts/create_advert';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
 import { Observable, firstValueFrom } from 'rxjs';
+import { ListMyAdvert } from 'src/app/contracts/Adverts/list_my_advert';
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +50,13 @@ export class AdvertService {
     await firstValueFrom(deleteObservable);
   }
 
+  async readMyAdvert(userNameOrEmail: string, successCallBack?: () => void): Promise<ListMyAdvert[]> {
+    const getObservable: Observable<ListMyAdvert[]> = this.httpClientService.get<ListMyAdvert[]>({
+      controller: "adverts",
+      action: `getbyid/${userNameOrEmail}`,
+    })
+    const adverts: ListMyAdvert[] = await firstValueFrom(getObservable);
+    successCallBack();
+    return adverts;
+  }
 }

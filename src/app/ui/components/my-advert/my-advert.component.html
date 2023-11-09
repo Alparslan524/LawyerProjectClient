@@ -1,0 +1,143 @@
+<mat-drawer-container class="myadvert-container">
+  <mat-drawer-content>
+    <div class="first-card">
+      <div class="first-card-container">
+        <div>
+          <h1 style="color: black">İlanlar</h1>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="advert-create-card">
+                <div class="advert-create-card-container">
+                  <div>
+                    <br /><br />
+                    <h1 style="color: white; margin: 3px">
+                      İlan oluşturun, Detayları doldurun ve yayınlayın!!
+                    </h1>
+                  </div>
+                  <br /><br /><br />
+                  <div>
+                    "İlan Ekle" butonuna tıklayarak yeni bir ilan
+                    oluşturun.İlanınız için başlık, açıklama, dava ile ilgili
+                    konular ve ücret bilgilerini ekleyin. Oluşturduğunuz ilanı
+                    yayınlayarak diğer avukatların görmesini sağlayın.
+                    Ekeldiğiniz ilanları aşağıdan görüntüleyebilir ve
+                    silebilirsiniz. Herhangi bir sorunuz olursa, iletişim
+                    sayfamızdan bize ulaşabilirsiniz.
+                  </div>
+                  <br /><br />
+
+                  <button
+                    style="width: 200px"
+                    mat-flat-button
+                    color="primary"
+                    (click)="createAdvertDialog()"
+                  >
+                    İlan Ekle
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-7 d-flex justify-content-center align-items-center"
+              style="font-size: x-large"
+            >
+              <div>
+                <div
+                  style="
+                    background-color: #e0e0e0;
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                    margin-right: 20px;
+                  "
+                >
+                  <h1 class="mb-4" style="color: black">Hoş geldiniz!</h1>
+                  <p>
+                    Bu sayfa, avukatlar arasında işbirliği ve bilgi paylaşımını
+                    teşvik etmek amacıyla oluşturulmuştur. Burada, diğer
+                    avukatlar tarafından paylaşılan ilanları bulabilir ve
+                    potansiyel işbirliği fırsatlarını değerlendirebilirsiniz.
+                    Eğer ilan size uygunsa, avukatın iletişim bilgilerini
+                    kullanarak kendisiyle iletişime geçebilirsiniz. İyi işler
+                    dileriz!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="advert-card"
+      style="margin-right: 20px"
+      *ngFor="let advert of myAdverts"
+    >
+      <div class="advert-card-container">
+        <div class="container">
+          <div class="row" style="margin: 0">
+            <div class="col-md-12">
+              <div class="advert-info-card">
+                <div class="advert-info-card-container">
+                  <div style="margin-bottom: 100px">
+                    <br /><br />
+                    <h1 style="color: white; margin: 3px; margin-bottom: 50px">
+                      Dava Bilgileri
+                    </h1>
+                  </div>
+
+                  <div class="container" style="color: white">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div>
+                          <h2 *ngIf="advert.caseType === 0">Boş</h2>
+                          <h2 *ngIf="advert.caseType === 1">Boşanma Davası</h2>
+                          <h2 *ngIf="advert.caseType === 2">Tazminat Davası</h2>
+                          <h2 *ngIf="advert.caseType === 3">Kira Davası</h2>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <h1 style="color: white; margin: 3px">
+                          {{ advert.price | number : "1.2-2" }} TL
+                        </h1>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h2>Dava Tarihi: <br />{{ advert.caseDate | date }}</h2>
+                      </div>
+                      <div class="col-sm-6">
+                        <h2>
+                          İlan Oluşturma Tarihi: <br />{{
+                            advert.createdDate | date
+                          }}
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h2>
+                          Şehir: <br />{{ advert.city }}/ {{ advert.district }}
+                        </h2>
+                      </div>
+                      <div class="col-sm-6">
+                        <h2>Dava Yeri: <br />{{ advert.casePlace }}</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h2>Adres: {{ advert.address }}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
