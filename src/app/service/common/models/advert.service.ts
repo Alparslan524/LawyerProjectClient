@@ -53,7 +53,7 @@ export class AdvertService {
   async readMyAdvert(userNameOrEmail: string, successCallBack?: () => void): Promise<ListMyAdvert[]> {
     const getObservable: Observable<ListMyAdvert[]> = this.httpClientService.get<ListMyAdvert[]>({
       controller: "adverts",
-      action: `getbyid/${userNameOrEmail}`,
+      action: `getbymyadvert/${userNameOrEmail}`,
     })
     const adverts: ListMyAdvert[] = await firstValueFrom(getObservable);
     successCallBack();

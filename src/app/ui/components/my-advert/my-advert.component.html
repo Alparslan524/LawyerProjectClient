@@ -52,15 +52,15 @@
                     margin-right: 20px;
                   "
                 >
-                  <h1 class="mb-4" style="color: black">Hoş geldiniz!</h1>
+                  <h1 class="mb-4" style="color: black">
+                    Dava Takip Sayfamıza Hoş Geldiniz!
+                  </h1>
                   <p>
-                    Bu sayfa, avukatlar arasında işbirliği ve bilgi paylaşımını
-                    teşvik etmek amacıyla oluşturulmuştur. Burada, diğer
-                    avukatlar tarafından paylaşılan ilanları bulabilir ve
-                    potansiyel işbirliği fırsatlarını değerlendirebilirsiniz.
-                    Eğer ilan size uygunsa, avukatın iletişim bilgilerini
-                    kullanarak kendisiyle iletişime geçebilirsiniz. İyi işler
-                    dileriz!
+                    Bu özel sayfa, kendi ilanlarınızı görüntüleyebileceğiniz bir
+                    alan sunuyor. Burada, yayınladığınız ilanlarınızı takip
+                    etmek için ideal bir alanınız var. İlanlarınızı
+                    görüntüleyebilir, silebilir ve güncelelyebilirsiniz. Keyfini
+                    çıkartın!!
                   </p>
                 </div>
               </div>
@@ -78,7 +78,48 @@
       <div class="advert-card-container">
         <div class="container">
           <div class="row" style="margin: 0">
-            <div class="col-md-12">
+            <div class="col-md-5">
+              <div class="advert-create-card">
+                <div class="advert-create-card-container">
+                  <div>
+                    <br /><br />
+                    <h1 style="color: white; margin: 3px">
+                      İlanlarınızı görüntüleyin, silin veya güncelleyin!!
+                    </h1>
+                  </div>
+                  <br /><br /><br />
+                  <div>
+                    Satılan, anlaşılan veya yayından kaldırmak istediğiniz ilanı
+                    "İlanı Sil" butonuna tıklayarak ilanınızı silebilirsiniz.
+                    <br />
+                    İlanınız ile ilgili değişiklik yapmak istediğinizde ise
+                    "İlanı Güncelle" butonuna tıklayarak mevcut ilanı
+                    güncelleyebilirsiniz. Herhangi bir sorunuz olursa, iletişim
+                    sayfamızdan bize ulaşabilirsiniz.
+                  </div>
+                  <br /><br />
+
+                  <button
+                    style="width: 200px"
+                    mat-flat-button
+                    color="warn"
+                    (click)="deleteAdvert(advert.objectId)"
+                  >
+                    İlanı Sil
+                  </button>
+
+                  <button
+                    style="width: 200px; margin-top: 30px;"
+                    mat-flat-button
+                    color="primary"
+                    (click)="updateAdvert()"
+                  >
+                    İlanı Güncelle
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
               <div class="advert-info-card">
                 <div class="advert-info-card-container">
                   <div style="margin-bottom: 100px">
