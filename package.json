@@ -23,6 +23,7 @@
     "@angular/router": "^16.2.0",
     "@auth0/angular-jwt": "^5.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@microsoft/signalr": "^7.0.12",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^5.0.0",
     "boxicons": "^2.1.4",
