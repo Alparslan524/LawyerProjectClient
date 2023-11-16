@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConstitutionComponent } from './constitution.component';
+import { ProfileComponent } from './profile.component';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -8,12 +8,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
-    ConstitutionComponent
+    ProfileComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: "", component: ConstitutionComponent }]),
-    MatSidenavModule,
+    RouterModule.forChild([{ path: "", component: ProfileComponent }]),
+    MatSidenavModule
   ]
 })
-export class ConstitutionModule { }
+export class ProfileModule { }

@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { AdvertModule } from './advert/advert.module';
 import { CalculationModule } from './calculation/calculation.module';
 import { CaseModule } from './case/case.module';
-import { ConstitutionModule } from './constitution/constitution.module';
-import { NewsModule } from './news/news.module';
-import { SidebarModule } from './sidebar/sidebar.module';
 import { MyAdvertModule } from './my-advert/my-advert.module';
+import { NewsModule } from './news/news.module';
+import { ProfileModule } from './profile/profile.module';
+import { SidebarModule } from './sidebar/sidebar.module';
 
 
 
@@ -15,7 +15,7 @@ import { MyAdvertModule } from './my-advert/my-advert.module';
   ],
   imports: [
     CommonModule,
-    AdvertModule, CalculationModule, ConstitutionModule, CaseModule, NewsModule, SidebarModule, MyAdvertModule,
+    AdvertModule, CalculationModule, CaseModule, NewsModule, SidebarModule, MyAdvertModule, ProfileModule
   ]
 })
 export class ComponentsModule { }
