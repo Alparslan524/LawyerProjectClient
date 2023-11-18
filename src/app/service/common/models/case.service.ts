@@ -5,6 +5,7 @@ import { CreateCase } from 'src/app/contracts/Case/create_case';
 import { ListCasePdf } from 'src/app/contracts/Case/list_case_pdf';
 import { HttpClientService } from '../http-client-service.service';
 import { ListCase } from 'src/app/contracts/Case/list_case';
+import { UpdateCase } from 'src/app/contracts/Case/update_case';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,7 @@ export class CaseService {
     successCallBack();
   }
 
-  async delete(id: number, successCallBack?: () => void,errorCallBack?: (errorMessage: string) => void) {
+  async delete(id: number, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
     const observable: Observable<any> = this.httpClientService.post({
       controller: "cases",
       action: `delete/${id}`
@@ -70,4 +71,12 @@ export class CaseService {
     successCallBack();
   }
 
+  async update(update_case: UpdateCase, successCallBack?: () => void,errorCallBack?: (errorMessage: string) => void) {
+    const updateObservable = this.httpClientService.put({
+      controller: "cases",
+      action: "Update"
+    }, update_case);
+    await firstValueFrom(updateObservable);
+    successCallBack();
+  }
 }

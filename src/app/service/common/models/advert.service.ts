@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
 import { Observable, firstValueFrom } from 'rxjs';
 import { ListMyAdvert } from 'src/app/contracts/Adverts/list_my_advert';
+import { UpdateAdvert } from 'src/app/contracts/Adverts/update_advert';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,14 @@ export class AdvertService {
     const adverts: ListMyAdvert[] = await firstValueFrom(getObservable);
     successCallBack();
     return adverts;
+  }
+
+  async update(update_advert: UpdateAdvert, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
+    const updateObservable = this.httpClientService.put({
+      controller: "adverts",
+      action: "UpdateAdvert"
+    }, update_advert);
+    await firstValueFrom(updateObservable);
+    successCallBack();
   }
 }

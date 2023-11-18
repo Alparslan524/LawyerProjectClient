@@ -13,9 +13,9 @@ const routes: Routes = [
     path: "sidebar", component: SidebarComponent, canActivate: [AuthGuard], children: [
       { path: "advert", loadChildren: () => import("./ui/components/advert/advert.module").then(module => module.AdvertModule), canActivate: [AuthGuard] },
       { path: "calculation", loadChildren: () => import("./ui/components/calculation/calculation.module").then(module => module.CalculationModule), canActivate: [AuthGuard] },
+      { path: "petition", loadChildren: () => import("./ui/components/petition/petition.module").then(module => module.PetitionModule), canActivate: [AuthGuard] },
       { path: "case", loadChildren: () => import("./ui/components/case/case.module").then(module => module.CaseModule), canActivate: [AuthGuard] },
       { path: "myadvert", loadChildren: () => import("./ui/components/my-advert/my-advert.module").then(module => module.MyAdvertModule), canActivate: [AuthGuard] },
-      { path: "news", loadChildren: () => import("./ui/components/news/news.module").then(module => module.NewsModule), canActivate: [AuthGuard] },
       { path: "profile", loadChildren: () => import("./ui/components/profile/profile.module").then(module => module.ProfileModule), canActivate: [AuthGuard] },
       {
         path: "admin", component: LayoutComponent, children: [

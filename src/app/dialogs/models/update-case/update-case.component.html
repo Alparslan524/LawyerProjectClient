@@ -1,0 +1,69 @@
+<h1 mat-dialog-title>Dava Güncelleme</h1>
+
+<div class="container">
+  <form [formGroup]="caseForm" (ngSubmit)="update()">
+    <div class="input-group">
+      <mat-form-field class="case-update" appearance="outline">
+        <mat-label>Dava Numarası</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          value="0"
+          formControlName="caseNumber"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="case-update" appearance="outline">
+        <mat-label>Not</mat-label>
+        <input
+          matInput
+          type="text"
+          min="0"
+          value="0"
+          formControlName="caseNot"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field class="case-update" appearance="outline">
+        <mat-label> Dava Tarihi </mat-label>
+        <input matInput type="date" formControlName="caseDate" />
+      </mat-form-field>
+
+      <mat-form-field class="case-update" appearance="outline">
+        <mat-label>Dava Tipi</mat-label>
+        <mat-select placeholder="Dava Tipi Seçin" formControlName="caseType">
+          <mat-option *ngFor="let type of caseTypes" [value]="type">{{
+            type
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="caseDescription" appearance="outline">
+        <mat-label>Dava Açıklaması...</mat-label>
+        <textarea
+          style="height: 100px"
+          matInput
+          formControlName="caseDescription"
+          placeholder="Dava Açıklaması..."
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="close()">İptal</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="update()"
+    [disabled]="!caseForm.valid || !caseForm.dirty "
+  >
+    Davayı Güncelle
+  </button>
+</div>

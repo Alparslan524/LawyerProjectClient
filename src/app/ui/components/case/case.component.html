@@ -84,9 +84,14 @@
           <ul>
             <div class="primary ghost">
               <div style="display: flex; justify-content: space-between">
+                <button mat-fab color="primary" (click)="update(case)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+
                 <button mat-fab color="warn" (click)="delete(case.objectId)">
                   <mat-icon>delete</mat-icon>
                 </button>
+
                 <button
                   mat-fab
                   color="primary"

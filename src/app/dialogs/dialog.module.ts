@@ -19,6 +19,8 @@ import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-ca
 import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';
 import { PdfViewDialogComponent } from './pdf-view-dialog/pdf-view-dialog.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { UpdateCaseComponent } from './models/update-case/update-case.component';
+import { UpdateAdvertComponent } from './models/update-advert/update-advert.component';
 
 
 
@@ -29,7 +31,9 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     CreateCaseDialogComponent, CreateAdvertDialogComponent,
     SelectCasePdfDialogComponent,
     SignOutDialogComponent,
-    PdfViewDialogComponent
+    PdfViewDialogComponent,
+    UpdateCaseComponent,
+    UpdateAdvertComponent
   ],
   imports: [
     CommonModule,

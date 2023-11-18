@@ -1,11 +1,14 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListCase } from 'src/app/contracts/Case/list_case';
+import { UpdateCase } from 'src/app/contracts/Case/update_case';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert/create-advert-dialog.component';
 import { CreateCaseDialogComponent } from 'src/app/dialogs/models/create-case/create-case-dialog.component';
+import { UpdateCaseComponent } from 'src/app/dialogs/models/update-case/update-case.component';
 import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AuthService } from 'src/app/service/common/auth.service';
@@ -21,7 +24,7 @@ declare var $: any
 })
 export class CaseComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private dialogService: DialogService, private caseService: CaseService, private authService: AuthService,
-    private socialAuthService: SocialAuthService, private alertifyService: AlertifyService) {
+    private socialAuthService: SocialAuthService, private alertifyService: AlertifyService, private dialog: MatDialog) {
     super(spinner);
     // authService.identityCheck();
   }
@@ -73,6 +76,15 @@ export class CaseComponent extends BaseComponent implements OnInit {
           left: "300px"
         }
       }
+    })
+  }
+
+  update(caseUpdate: UpdateCase) {//DialogServiste datada bir sıkıntı çıkıyor o yüzden direkt MatDialogtan açıyoruz.
+    const dialogRef = this.dialog.open(UpdateCaseComponent, ({
+      data: caseUpdate,
+    }));
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.getCase();
     })
   }
 
