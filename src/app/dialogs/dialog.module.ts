@@ -17,6 +17,8 @@ import { CreateAdvertDialogComponent } from './models/create-advert/create-adver
 import { CreateCaseDialogComponent } from './models/create-case/create-case-dialog.component';
 import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';
+import { PdfViewDialogComponent } from './pdf-view-dialog/pdf-view-dialog.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 
@@ -26,13 +28,14 @@ import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.compon
     DeleteDialogComponent,
     CreateCaseDialogComponent, CreateAdvertDialogComponent,
     SelectCasePdfDialogComponent,
-    SignOutDialogComponent
+    SignOutDialogComponent,
+    PdfViewDialogComponent
   ],
   imports: [
     CommonModule,
     MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, MatIconModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule,
-    FileUploadModule
-
+    FileUploadModule,
+    NgxExtendedPdfViewerModule
 
   ]
 })

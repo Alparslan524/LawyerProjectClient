@@ -1,31 +1,52 @@
 <mat-drawer-container class="pdf-container">
-  
   <mat-drawer mode="side" opened style="width: 25%">
     <h2 mat-dialog-title>Dosya İşlemleri</h2>
     <mat-dialog-content class="mat-typography">
       <app-file-upload [options]="fileUploadOptions"></app-file-upload>
     </mat-dialog-content>
   </mat-drawer>
-  
-  <mat-drawer-content style="width: 75%" >
+
+  <mat-drawer-content style="width: 75%">
     <mat-card class="pdf-card" *ngFor="let pdfFile of pdfFiles">
       <!-- Burada ilgili avukatın davasının ne kadar pdf'i varsa o kadar dönecez -->
       <mat-card-header> </mat-card-header>
 
       <p>{{ pdfFile.fileName }}</p>
 
-      <mat-card-actions style="margin-top: auto;">
-        <button mat-fab color="warn" style="position: relative; margin: auto;" (click)="deletePdf(pdfFile.id, $event)" >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-actions>
-    
+      <div class="container" style="position: relative; height: 100%">
+        <div class="row" style="position: absolute; bottom: 0">
+          <div class="col-md-12">
+            <mat-card-actions style="margin-top: 25px; float: left">
+              <button
+                mat-fab
+                color="warn"
+                style="position: relative; margin: auto"
+                (click)="deletePdf(pdfFile.id, $event)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+
+            <mat-card-actions style="margin-top: 25px; float: right">
+              <button
+                mat-fab
+                color="primary"
+                style="position: relative; margin: auto"
+                (click)="showPdf(pdfFile.path)"
+              >
+                <mat-icon>pageview</mat-icon>
+              </button>
+            </mat-card-actions>
+          </div>
+        </div>
+      </div>
     </mat-card>
 
-    
-    <mat-dialog-actions align="end" style="position:absolute; bottom:0; right:0;">
-      <button mat-raised-button color="warn" mat-dialog-close >İptal</button>
+    <mat-dialog-actions
+      align="end"
+      style="position: absolute; bottom: 0; right: 0"
+    >
+      <button mat-raised-button color="warn" mat-dialog-close>İptal</button>
     </mat-dialog-actions>
   </mat-drawer-content>
-  
 </mat-drawer-container>

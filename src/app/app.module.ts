@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { HttpErrorInterceptorService } from './service/common/interceptor/http-error-interceptor.service';
 import {MatButtonModule} from '@angular/material/button';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 
@@ -37,7 +38,8 @@ import {MatButtonModule} from '@angular/material/button';
         allowedDomains: ["localhost:7076"]
       }
     }),
-    SocialLoginModule, GoogleSigninButtonModule
+    SocialLoginModule, GoogleSigninButtonModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [{ provide: "baseUrl", useValue: "https://localhost:7076/api", multi: true },
   {

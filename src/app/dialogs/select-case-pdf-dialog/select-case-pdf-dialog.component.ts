@@ -1,14 +1,14 @@
-import { Component, Inject, Output, OnInit } from '@angular/core';
-import { BaseDialog } from '../base/base-dialog';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FileUploadOptions } from 'src/app/service/common/file-upload/file-upload.component';
-import { CaseService } from 'src/app/service/common/models/case.service';
-import { ListCasePdf } from 'src/app/contracts/Case/list_case_pdf';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from 'src/app/base/base.component';
-import { MatCard } from '@angular/material/card';
+import { ListCasePdf } from 'src/app/contracts/Case/list_case_pdf';
 import { DialogService } from 'src/app/service/common/dialog.service';
+import { FileUploadOptions } from 'src/app/service/common/file-upload/file-upload.component';
+import { CaseService } from 'src/app/service/common/models/case.service';
+import { BaseDialog } from '../base/base-dialog';
 import { DeleteDialogComponent, DeleteState } from '../delete-dialog/delete-dialog.component';
+import { PdfViewDialogComponent } from '../pdf-view-dialog/pdf-view-dialog.component';
 
 declare var $: any
 
@@ -31,7 +31,7 @@ export class SelectCasePdfDialogComponent extends BaseDialog<SelectCasePdfDialog
     action: `upload/${this.data}`,
     controller: "cases",
     explanation: "Dosyaları Seçiniz...",
-    afterClosed: ()=>{
+    afterClosed: () => {
       this.getPdfFiles();
     }
   }
@@ -43,7 +43,7 @@ export class SelectCasePdfDialogComponent extends BaseDialog<SelectCasePdfDialog
     await this.getPdfFiles();
   }
 
-  async getPdfFiles(){
+  async getPdfFiles() {
     this.pdfFiles = await this.caseService.readPdf(this.data as number, () => {
       this.spinner.hide(SpinnerType.SquareJellyBox);
     });
@@ -61,6 +61,13 @@ export class SelectCasePdfDialogComponent extends BaseDialog<SelectCasePdfDialog
           card.fadeOut(2000)
         })
       }
+    })
+  }
+
+  async showPdf(path: string) {
+    this.dialogService.openDialog({
+      componentType: PdfViewDialogComponent,
+      data: path
     })
   }
 
