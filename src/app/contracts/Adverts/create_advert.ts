@@ -8,4 +8,5 @@ export class CreateAdvert {
     Address: string;
     District: string;
     CasePlace: string;
+    Description:string;
 }

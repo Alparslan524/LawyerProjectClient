@@ -32,6 +32,7 @@ export class CreateAdvertDialogComponent extends BaseDialog<CreateAdvertDialogCo
       address: ['', Validators.required],
       district: ['', Validators.required],
       casePlace: ['', Validators.required],
+      description: ['', Validators.required]
     })
   }
 
@@ -69,6 +70,7 @@ export class CreateAdvertDialogComponent extends BaseDialog<CreateAdvertDialogCo
     create_advert.Address = this.advertForm.get('address').value;
     create_advert.District = this.advertForm.get('district').value;
     create_advert.CasePlace = this.advertForm.get('casePlace').value;
+    create_advert.Description = this.advertForm.get('description').value;
 
     await this.advertService.create(create_advert, async () => {
       this.alertify.message("İlan başarıyla eklenmiştir!!", {

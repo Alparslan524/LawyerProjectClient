@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FileUploadModule } from '../service/common/file-upload/file-upload.module';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
-import { CreateAdvertDialogComponent } from './models/create-advert-dialog/create-advert-dialog.component';
+import { CreateAdvertDialogComponent } from './models/create-advert/create-advert-dialog.component';
 import { CreateCaseDialogComponent } from './models/create-case/create-case-dialog.component';
 import { SelectCasePdfDialogComponent } from './select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';

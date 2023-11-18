@@ -32,9 +32,9 @@
         <div class="col-md-7">
           <div class="advert-info-card">
             <div class="advert-info-card-container">
-              <div style="margin-bottom: 100px">
+              <div >
                 <br /><br />
-                <h1 style="color: white; margin: 3px; margin-bottom: 50px">
+                <h1 style="color: white; margin: 3px; margin-bottom: 5px">
                   Dava Bilgileri
                 </h1>
               </div>
@@ -84,32 +84,12 @@
                     <h2>Adres: {{ advert.address }}</h2>
                   </div>
                 </div>
-              </div>
-
-              <!-- <div>
-                <br /><br />
-                <h1 style="color: white; margin: 3px; margin-bottom: 50px">
-                  Dava Bilgileri
-                </h1>
-                <h1 style="color: white; margin: 3px">
-                  {{ advert.price | number : "1.2-2" }} TL
-                </h1>
-              </div>
-              <div style="color: white; padding: 10px">
-                <div>
-                  <h2 *ngIf="advert.caseType === 0">Dava Tipi: Boş</h2>
-                  <h2 *ngIf="advert.caseType === 1">Dava Tipi: Boşanma Davası</h2>
-                  <h2 *ngIf="advert.caseType === 2">Dava Tipi: Tazminat Davası</h2>
-                  <h2 *ngIf="advert.caseType === 3">Dava Tipi: Kira Davası</h2>
+                <div class="row" *ngIf="advert.description">
+                  <div class="col-sm-12">
+                    <h2>Açıklama: {{ advert.description }}</h2>
+                  </div>
                 </div>
-
-                <h2>Dava Tarihi: {{ advert.caseDate | date }}</h2>
-                <h2>Şehir: {{ advert.city }}</h2>
-                <h2>Adres: {{ advert.address }}</h2>
-                <h2>İlçe: {{ advert.district }}</h2>
-                <h2>Dava Yeri: {{ advert.casePlace }}</h2>
-                <h2>Oluşturulma Tarihi: {{ advert.createdDate | date }}</h2>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>

@@ -11,5 +11,6 @@ export class ListAdvert {
     casePlace: string;
     createdDate: Date;
     updatedDate: Date;
+    description:string;
     user:User;
 }

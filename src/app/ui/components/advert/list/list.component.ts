@@ -7,7 +7,7 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { HubUrls } from 'src/app/constants/hub-urls';
 import { ReceiveFunctions } from 'src/app/constants/receive-functions';
 import { ListAdvert } from 'src/app/contracts/Adverts/list_advert';
-import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert-dialog/create-advert-dialog.component';
+import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert/create-advert-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { DialogService } from 'src/app/service/common/dialog.service';
 import { FileUploadOptions } from 'src/app/service/common/file-upload/file-upload.component';

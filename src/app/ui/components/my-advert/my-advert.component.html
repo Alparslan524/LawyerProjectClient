@@ -122,9 +122,9 @@
             <div class="col-md-7">
               <div class="advert-info-card">
                 <div class="advert-info-card-container">
-                  <div style="margin-bottom: 100px">
+                  <div>
                     <br /><br />
-                    <h1 style="color: white; margin: 3px; margin-bottom: 50px">
+                    <h1 style="color: white; margin: 3px;">
                       Dava Bilgileri
                     </h1>
                   </div>
@@ -170,6 +170,11 @@
                     <div class="row">
                       <div class="col-sm-12">
                         <h2>Adres: {{ advert.address }}</h2>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="advert.description">
+                      <div class="col-sm-12">
+                        <h2>Açıklama: {{ advert.description }}</h2>
                       </div>
                     </div>
                   </div>

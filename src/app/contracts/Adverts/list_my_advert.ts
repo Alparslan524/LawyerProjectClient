@@ -9,4 +9,5 @@ export class ListMyAdvert{
     casePlace: string;
     createdDate: Date;
     updatedDate: Date;
+    description:string;
 }

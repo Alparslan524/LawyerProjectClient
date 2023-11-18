@@ -3,7 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListMyAdvert } from 'src/app/contracts/Adverts/list_my_advert';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
-import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert-dialog/create-advert-dialog.component';
+import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert/create-advert-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { DialogService } from 'src/app/service/common/dialog.service';
 import { AdvertService } from 'src/app/service/common/models/advert.service';

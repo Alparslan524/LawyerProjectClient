@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { ListCase } from 'src/app/contracts/Case/list_case';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
-import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert-dialog/create-advert-dialog.component';
+import { CreateAdvertDialogComponent } from 'src/app/dialogs/models/create-advert/create-advert-dialog.component';
 import { CreateCaseDialogComponent } from 'src/app/dialogs/models/create-case/create-case-dialog.component';
 import { SelectCasePdfDialogComponent } from 'src/app/dialogs/select-case-pdf-dialog/select-case-pdf-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
