@@ -3,7 +3,7 @@ export class ListCase{
     caseNumber: number;
     caseNot: string;
     caseDescription: string;
-    caseType: number;
+    caseType: string;
     caseDate: Date;
     createdDate: Date;
     updatedDate: Date;

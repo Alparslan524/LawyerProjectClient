@@ -3,6 +3,6 @@ export class UpdateCase {
     caseNumber: number;
     caseNot: string;
     caseDescription: string;
-    caseType: number;
+    caseType: string;
     caseDate: Date;
 }

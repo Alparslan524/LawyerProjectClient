@@ -16,8 +16,7 @@ import { BaseDialog } from '../../base/base-dialog';
 export class CreateAdvertDialogComponent extends BaseDialog<CreateAdvertDialogComponent> implements OnInit {
 
   advertForm: FormGroup;
-  caseTypes = ['Boş', 'Boşanma Davası', 'Tazminat Davası', 'Kira Davası'];
-
+  
   constructor(dialogRef: MatDialogRef<CreateAdvertDialogComponent>, private fb: FormBuilder,
     private advertService: AdvertService, private alertify: AlertifyService, private spinner: NgxSpinnerService,) {
     super(dialogRef)
@@ -41,29 +40,9 @@ export class CreateAdvertDialogComponent extends BaseDialog<CreateAdvertDialogCo
     this.advertForm.disable();
     this.spinner.show(SpinnerType.SquareJellyBox);
 
-    let caseTypeValue: number;
-
-    switch (this.advertForm.value.caseType) {
-      case 'Boş':
-        caseTypeValue = 0;
-        break;
-      case 'Boşanma Davası':
-        caseTypeValue = 1;
-        break;
-      case 'Tazminat Davası':
-        caseTypeValue = 2;
-        break;
-      case 'Kira Davası':
-        caseTypeValue = 3;
-        break;
-      default:
-        caseTypeValue = -1; // Handle unexpected cases
-        break;
-    }
-
     const create_advert: CreateAdvert = new CreateAdvert();
     create_advert.UserNameOrEmail = localStorage.getItem("userNameOrEmail");
-    create_advert.CaseType = caseTypeValue;
+    create_advert.CaseType = this.advertForm.get('caseType').value;
     create_advert.CaseDate = this.advertForm.get('caseDate').value;
     create_advert.Price = this.advertForm.get('price').value;
     create_advert.City = this.advertForm.get('city').value;

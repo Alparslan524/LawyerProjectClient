@@ -3,7 +3,7 @@ export class CreateCase {
     CaseNumber: number;
     CaseNot: string;
     CaseDescription: string;
-    CaseType: number;
+    CaseType: string;
     CaseDate: Date;
 }
 

@@ -38,7 +38,6 @@ export class MyAdvertComponent extends BaseComponent implements OnInit {
     this.myAdverts = this.myAdverts.reverse();
   }
 
-
   createAdvertDialog() {
     this.dialogService.openDialog({
       componentType: CreateAdvertDialogComponent,

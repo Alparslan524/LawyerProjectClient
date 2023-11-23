@@ -16,11 +16,7 @@
 
       <mat-form-field class="advert-update" appearance="outline">
         <mat-label>Dava Tipi</mat-label>
-        <mat-select placeholder="Dava Tipi Seçin" formControlName="caseType">
-          <mat-option *ngFor="let type of caseTypes" [value]="type">{{
-            type
-          }}</mat-option>
-        </mat-select>
+        <input matInput formControlName="caseType" />
       </mat-form-field>
     </div>
 

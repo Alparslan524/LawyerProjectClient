@@ -52,10 +52,7 @@
         </div>
 
         <div>
-          <h2 *ngIf="case.caseType === 0">Boş</h2>
-          <h2 *ngIf="case.caseType === 1">Boşanma Davası</h2>
-          <h2 *ngIf="case.caseType === 2">Tazminat Davası</h2>
-          <h2 *ngIf="case.caseType === 3">Kira Davası</h2>
+          <h2>{{ case.caseType }}</h2>
         </div>
 
         <div>

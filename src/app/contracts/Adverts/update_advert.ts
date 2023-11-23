@@ -1,6 +1,6 @@
 export class UpdateAdvert{
     objectId: number;
-    caseType: number;
+    caseType: string;
     caseDate: Date;
     price: number;
     city: string;

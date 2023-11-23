@@ -42,18 +42,7 @@
               <div class="container" style="color: white;">
                 <div class="row">
                   <div class="col-sm-6">
-                    <div>
-                      <h2 *ngIf="advert.caseType === 0">Boş</h2>
-                      <h2 *ngIf="advert.caseType === 1">
-                        Boşanma Davası
-                      </h2>
-                      <h2 *ngIf="advert.caseType === 2">
-                        Tazminat Davası
-                      </h2>
-                      <h2 *ngIf="advert.caseType === 3">
-                        Kira Davası
-                      </h2>
-                    </div>
+                    <h2>{{ advert.caseType}}</h2>
                   </div>
                   <div class="col-sm-6">
                     <h1 style="color: white; margin: 3px">

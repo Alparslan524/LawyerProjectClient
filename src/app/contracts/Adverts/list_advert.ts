@@ -2,7 +2,7 @@ import { User } from "../User/User";
 
 export class ListAdvert {
     objectId: number;
-    caseType: number;
+    caseType: string;
     caseDate: Date;
     price: number;
     city: string;

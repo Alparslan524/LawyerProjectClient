@@ -24,13 +24,11 @@ export class UpdateAdvertComponent extends BaseDialog<UpdateAdvertComponent> imp
   }
 
   advertForm: FormGroup;
-  caseTypes = ['Boş', 'Boşanma Davası', 'Tazminat Davası', 'Kira Davası'];
-  caseTypeString: string;
-  caseTypeValue: number;
+  
 
   ngOnInit(): void {
     this.advertForm = this.fb.group({
-      caseType: [this.getCaseTypeValueUpdateCase(), Validators.required],
+      caseType: [this.data.caseType, Validators.required],
       caseDate: [formatDate(this.data.caseDate, 'yyyy-MM-dd', 'en-US'), Validators.required],
       price: [this.data.price, Validators.required],
       city: [this.data.city, Validators.required],
@@ -48,7 +46,7 @@ export class UpdateAdvertComponent extends BaseDialog<UpdateAdvertComponent> imp
 
     const update_advert: UpdateAdvert = new UpdateAdvert();
     update_advert.objectId = this.data.objectId;
-    update_advert.caseType = this.getCaseTypeValue();
+    update_advert.caseType = this.advertForm.get('caseType').value;
     update_advert.caseDate = this.advertForm.get('caseDate').value;
     update_advert.price = this.advertForm.get('price').value;
     update_advert.city = this.advertForm.get('city').value;
@@ -72,47 +70,5 @@ export class UpdateAdvertComponent extends BaseDialog<UpdateAdvertComponent> imp
     this.advertForm.enable();
     this.close();
     this.spinner.hide(SpinnerType.SquareJellyBox);
-  }
-
-  getCaseTypeValue(): number {
-    switch (this.advertForm.value.caseType) {
-      case 'Boş':
-        this.caseTypeValue = 0;
-        break;
-      case 'Boşanma Davası':
-        this.caseTypeValue = 1;
-        break;
-      case 'Tazminat Davası':
-        this.caseTypeValue = 2;
-        break;
-      case 'Kira Davası':
-        this.caseTypeValue = 3;
-        break;
-      default:
-        this.caseTypeValue = -1; // Handle unexpected cases
-        break;
-    }
-    return this.caseTypeValue;
-  }
-
-  getCaseTypeValueUpdateCase(): string {
-    switch (this.data.caseType) {
-      case 0:
-        this.caseTypeString = 'Boş'
-        break;
-      case 1:
-        this.caseTypeString = 'Boşanma Davası'
-        break;
-      case 2:
-        this.caseTypeString = 'Tazminat Davası'
-        break;
-      case 3:
-        this.caseTypeString = 'Kira Davası'
-        break;
-      default:
-        this.caseTypeString = null; // Handle unexpected cases
-        break;
-    }
-    return this.caseTypeString;
   }
 }
