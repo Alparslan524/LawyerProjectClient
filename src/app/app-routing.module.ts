@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: "case", loadChildren: () => import("./ui/components/case/case.module").then(module => module.CaseModule), canActivate: [AuthGuard] },
       { path: "myadvert", loadChildren: () => import("./ui/components/my-advert/my-advert.module").then(module => module.MyAdvertModule), canActivate: [AuthGuard] },
       { path: "profile", loadChildren: () => import("./ui/components/profile/profile.module").then(module => module.ProfileModule), canActivate: [AuthGuard] },
+
       {
         path: "admin", component: LayoutComponent, children: [
           { path: "", component: DashboardComponent },//www.xxx.com/admin dediğimizde DashboardComponent gelicek.
@@ -25,6 +26,8 @@ const routes: Routes = [
       },
     ]
   },
+  { path: "password-reset", loadChildren: () => import("./ui/components/password-reset/password-reset.module").then(module => module.PasswordResetModule) },
+  { path: "update-password/:userId/:resetToken", loadChildren: () => import("./ui/components/password-update/password-update.module").then(module => module.PasswordUpdateModule) },
 
 ];
 

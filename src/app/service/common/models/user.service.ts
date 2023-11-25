@@ -75,4 +75,36 @@ export class UserService {
     callBack();
   }
 
+  async passwordReset(email: string, callBack?: () => void) {
+    const observable: Observable<any> = await this.httpClientService.post({
+      controller: "auth",
+      action: "password-reset",
+    }, { email: email });
+
+    await firstValueFrom(observable);
+    callBack();
+  }
+
+  async verifyResetToken(resetToken: string, userId: string, callBack?: () => void): Promise<boolean> {
+    const observable: Observable<any> = await this.httpClientService.post({
+      controller: "auth",
+      action: "verify-reset-token",
+    }, { resetToken: resetToken, userId: userId });
+
+    const state: boolean = await firstValueFrom(observable);
+    callBack();
+    return state;
+  }
+
+  async updatePassword(userId: string, resetToken: string, password: string, passwordConfirm: string, successCallBack?: () => void,
+    errorCallBack?: (error) => void) {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "users",
+      action: "update-password"
+    }, { userId: userId, resetToken: resetToken, password: password, passwordConfirm: passwordConfirm })
+
+    const promiseData: Promise<any> = firstValueFrom(observable);
+    promiseData.then(value => successCallBack()).catch(error => errorCallBack(error));
+    await promiseData;
+  }
 }
