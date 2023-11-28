@@ -1,3 +1,111 @@
 <mat-drawer-container class="profile-container">
-  <mat-drawer-content> <p>profile works!</p> </mat-drawer-content>
+  <mat-drawer-content> 
+    <div class="row" style="margin-top: 25px; padding: 20px; ">
+      <div class="col-md-5">
+        <div class="card-header">
+          <h5 class="card-title">Profil</h5>
+        </div>
+        <div class="card card-user text-center">
+          <div class="image">
+            <img src="../../../../assets/icons-delete-48.png" alt="...">
+          </div>
+          <div class="card-footer">
+            <hr>
+            <div class="container">
+              <div class="button-container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-6 col-md-6 col-6 text-center">
+                    <button mat-raised-button color="primary" routerLink="/sidebar/case" >Davalarım</button>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-6 text-center">
+                    <button mat-raised-button color="primary" routerLink="/sidebar/myadvert" >İlanlarım</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title text-center"><b>Bilgileriniz</b></h2>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled team-members" style="font-size: large;" >
+              <li>
+                <div class="row">
+                  <div class="col-md-6 col-2">
+                    <b>İsim: </b>{{user.firstName}}
+                  </div>
+                  <div class="col-md-6 col-7">
+                    <b>Soyisim: </b>{{user.lastName}}
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row" style="margin-top: 25px;">
+                  <div class="col-md-6 col-3 text-right">
+                    <b>Email: </b>{{user.email}}
+                  </div>
+                  <div class="col-md-6 col-3 text-right">
+                    <b>Telefon Numarası: </b>{{user.phoneNumber}}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Güncelleme kısmı -->
+      <div class="col-md-7">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Profili Düzenle</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="userForm" (submit)="update()">  
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>İsim</label>
+                    <input type="text" class="form-control" placeholder="İsim" formControlName="firstName">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Soyisim</label>
+                    <input type="text" class="form-control" placeholder="Soyisim" formControlName="lastName">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Telefon Numaras</label>
+                    <input type="text" class="form-control" placeholder="Telefon Numarası" formControlName="phoneNumber">
+                  </div>
+                </div>
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email adresi</label>
+                    <input type="email" class="form-control" placeholder="Email" disabled value="{{user.email}}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top: 25px;">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-success btn-round" [disabled]="!userForm.valid || !userForm.dirty" >Update Profile</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-drawer-content>
 </mat-drawer-container>

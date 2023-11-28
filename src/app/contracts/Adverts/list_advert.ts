@@ -1,4 +1,4 @@
-import { User } from "../User/User";
+import { GetUser } from "../User/get-user";
 
 export class ListAdvert {
     objectId: number;
@@ -12,5 +12,5 @@ export class ListAdvert {
     createdDate: Date;
     updatedDate: Date;
     description:string;
-    user:User;
+    user:GetUser;
 }

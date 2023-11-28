@@ -6,6 +6,7 @@ import { Observable, firstValueFrom } from 'rxjs';
 import { TokenResponse } from 'src/app/contracts/Token/tokenResponse';
 import { AlertifyService, MessageType, Position } from '../alertify.service';
 import { SocialUser } from '@abacritt/angularx-social-login';
+import { GetUser } from 'src/app/contracts/User/get-user';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,7 @@ export class UserService {
       this.alertifyService.message("Google ile giriş başarıyla sağlanmıştır.", {
         messageType: MessageType.Success,
         position: Position.TopRight,
-        dismissOthers:true
+        dismissOthers: true
       });
     }
     callBack();
@@ -106,5 +107,25 @@ export class UserService {
     const promiseData: Promise<any> = firstValueFrom(observable);
     promiseData.then(value => successCallBack()).catch(error => errorCallBack(error));
     await promiseData;
+  }
+
+  async getUser(successCallBack?: () => void): Promise<GetUser> {
+    const observable: Observable<GetUser> = this.httpClientService.get<GetUser>({
+      controller: "users",
+      action: `getuserbyusername/${localStorage.getItem("userNameOrEmail")}`
+    })
+
+    const user: GetUser = await firstValueFrom(observable);
+    successCallBack()
+    return user;
+  }
+
+  async updateUser(update_user: GetUser, successCallBack?: () => void) {
+    const observable: Observable<GetUser> = this.httpClientService.post({
+      controller: "users",
+      action: "updateuser"
+    }, update_user);
+    await firstValueFrom(observable);
+    successCallBack();
   }
 }

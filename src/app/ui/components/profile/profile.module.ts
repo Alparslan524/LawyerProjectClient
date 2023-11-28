@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileComponent } from './profile.component';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
+import { ProfileComponent } from './profile.component';
 
 
 
@@ -13,7 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: ProfileComponent }]),
-    MatSidenavModule
+    ReactiveFormsModule,
+    MatSidenavModule, MatButtonModule
   ]
 })
 export class ProfileModule { }
