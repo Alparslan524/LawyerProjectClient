@@ -21,6 +21,7 @@ import { PdfViewDialogComponent } from './pdf-view-dialog/pdf-view-dialog.compon
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { UpdateCaseComponent } from './models/update-case/update-case.component';
 import { UpdateAdvertComponent } from './models/update-advert/update-advert.component';
+import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
 
 
 
@@ -33,7 +34,8 @@ import { UpdateAdvertComponent } from './models/update-advert/update-advert.comp
     SignOutDialogComponent,
     PdfViewDialogComponent,
     UpdateCaseComponent,
-    UpdateAdvertComponent
+    UpdateAdvertComponent,
+    AuthorizeMenuDialogComponent
   ],
   imports: [
     CommonModule,

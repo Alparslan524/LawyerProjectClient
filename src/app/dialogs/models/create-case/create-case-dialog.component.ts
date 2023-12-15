@@ -25,10 +25,10 @@ export class CreateCaseDialogComponent extends BaseDialog<CreateCaseDialogCompon
   ngOnInit(): void {
     this.caseForm = this.fb.group({
       caseNumber: ['', Validators.required],
-      caseNot: ['', Validators.required],
-      caseDescription: ['', Validators.required],
       caseType: ['', Validators.required],
-      caseDate: ['', Validators.required]
+      caseNot: [null],
+      caseDescription: [null],
+      caseDate: [null]
     })
   }
 
@@ -40,6 +40,7 @@ export class CreateCaseDialogComponent extends BaseDialog<CreateCaseDialogCompon
     create_case.UserNameOrEmail = localStorage.getItem("userNameOrEmail");
     create_case.CaseNumber = this.caseForm.get('caseNumber').value;
     create_case.CaseNot = this.caseForm.get('caseNot').value;
+
     create_case.CaseDescription = this.caseForm.get('caseDescription').value;
     create_case.CaseType = this.caseForm.get('caseType').value;
     create_case.CaseDate = this.caseForm.get('caseDate').value;

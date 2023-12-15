@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
-import { LayoutComponent } from './admin/layout/layout.component';
+import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './ui/components/register/register.component';
 import { SidebarComponent } from './ui/components/sidebar/sidebar.component';
@@ -19,8 +18,7 @@ const routes: Routes = [
       { path: "profile", loadChildren: () => import("./ui/components/profile/profile.module").then(module => module.ProfileModule), canActivate: [AuthGuard] },
 
       {
-        path: "admin", component: LayoutComponent, children: [
-          { path: "", component: DashboardComponent },//www.xxx.com/admin dediğimizde DashboardComponent gelicek.
+        path: "admin", component: AdminHomeComponent, children: [
           { path: "adminhome", loadChildren: () => import("./admin/components/admin-home/admin-home.module").then(module => module.AdminHomeModule) }
         ]
       },

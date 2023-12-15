@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ data.name }} Endpointine Rol Atama</h1>
+<div mat-dialog-content>
+  <p>İlgili sayfaya rolleri atayabilirsiniz</p>
+  <div matBadge="4" matBadgeOverlap="false"></div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">İptal</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Evet</button>
+</div>
