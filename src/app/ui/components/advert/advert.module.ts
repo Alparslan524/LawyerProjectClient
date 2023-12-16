@@ -10,24 +10,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { DeleteDirective } from 'src/app/directive/common/delete.directive';
+import { DeleteDirective } from 'src/app/directive/common/delete.directive/delete.directive';
 import { FileUploadModule } from 'src/app/service/common/file-upload/file-upload.module';
 import { AdvertComponent } from './advert.component';
 import { ListComponent } from './list/list.component';
+import { DeleteDirectiveModule } from 'src/app/directive/common/delete.directive/delete.directive.module';
 
 
 @NgModule({
   declarations: [
     AdvertComponent,
     ListComponent,
-    DeleteDirective,
-
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: AdvertComponent }]),
     MatTableModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatPaginatorModule, MatDialogModule,
-    MatDialogModule, FileUploadModule
+    MatDialogModule, FileUploadModule,
+    DeleteDirectiveModule
   ]
 })
 export class AdvertModule { }

@@ -41,7 +41,7 @@ export class DeleteDirective {
           this.spinner.show(SpinnerType.SquareJellyBox);
           const td: HTMLTableCellElement = this.element.nativeElement;
           //await this.advertService.delete(this.id)
-          this.httpClientService.putById({
+          this.httpClientService.delete({
             controller: this.controller,
             action: this.action,
           }, this.id).subscribe(data => {

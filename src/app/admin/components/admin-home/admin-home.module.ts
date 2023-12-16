@@ -7,6 +7,7 @@ import { AuthorizeMenuComponent } from './authorize-menu/authorize-menu.componen
 import {MatTreeModule} from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RoleModule } from './role/role.module';
 
 
 
@@ -18,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: "", component: AdminHomeComponent }]),
-    MatSidenavModule, MatTreeModule, MatIconModule, MatButtonModule
+    MatSidenavModule, MatTreeModule, MatIconModule, MatButtonModule,
+    RoleModule
     
   ]
 })
