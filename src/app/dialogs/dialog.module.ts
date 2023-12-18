@@ -22,6 +22,9 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { UpdateCaseComponent } from './models/update-case/update-case.component';
 import { UpdateAdvertComponent } from './models/update-advert/update-advert.component';
 import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
+import {MatListModule} from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 
 
@@ -39,7 +42,10 @@ import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, MatIconModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule,
+
+    MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, 
+    MatCardModule, MatIconModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatListModule, MatBadgeModule,
+    
     FileUploadModule,
     NgxExtendedPdfViewerModule
 
