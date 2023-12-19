@@ -8,6 +8,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RoleModule } from './role/role.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -20,7 +21,7 @@ import { RoleModule } from './role/role.module';
     CommonModule,
     RouterModule.forChild([{ path: "", component: AdminHomeComponent }]),
     MatSidenavModule, MatTreeModule, MatIconModule, MatButtonModule,
-    RoleModule
+    RoleModule, UserModule
     
   ]
 })

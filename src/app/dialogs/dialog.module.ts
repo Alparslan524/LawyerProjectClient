@@ -24,6 +24,7 @@ import { UpdateAdvertComponent } from './models/update-advert/update-advert.comp
 import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
 import {MatListModule} from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
 
 
 
@@ -38,7 +39,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     PdfViewDialogComponent,
     UpdateCaseComponent,
     UpdateAdvertComponent,
-    AuthorizeMenuDialogComponent
+    AuthorizeMenuDialogComponent,
+    AuthorizeUserDialogComponent
   ],
   imports: [
     CommonModule,

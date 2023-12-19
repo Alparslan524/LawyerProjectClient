@@ -7,6 +7,8 @@ import { TokenResponse } from 'src/app/contracts/Token/tokenResponse';
 import { AlertifyService, MessageType, Position } from '../alertify.service';
 import { SocialUser } from '@abacritt/angularx-social-login';
 import { GetUser } from 'src/app/contracts/User/get-user';
+import { List_User } from 'src/app/contracts/User/list-user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -127,5 +129,42 @@ export class UserService {
     }, update_user);
     await firstValueFrom(observable);
     successCallBack();
+  }
+
+  async getAllUsers(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalUsersCount: number; users: List_User[] }> {
+    const promiseData: Promise<{ totalUsersCount: number; users: List_User[] }> = this.httpClientService.get<{ totalUsersCount: number; users: List_User[] }>({
+      controller: "users",
+      queryString: `page=${page}&size=${size}`
+    }).toPromise();
+
+    promiseData.then(d => successCallBack()).catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));
+    return await promiseData;
+  }
+
+  async assignRoleToUser(id: string, roles: string[], successCallBack?: () => void, errorCallBack?: (error) => void) {
+    const observable: Observable<any> = this.httpClientService.post({
+      controller: "users",
+      action: "assign-role-to-user"
+    }, {
+      userId: id,
+      roles: roles
+    });
+
+    const promiseData = firstValueFrom(observable);
+    promiseData.then(() => successCallBack()).catch(error => errorCallBack(error));
+
+    await promiseData;
+  }
+
+  async getRolesToUser(userId: string, successCallBack?: () => void, errorCallBack?: (error) => void): Promise<string[]> {
+    const observable: Observable<{ userRoles: string[] }> = this.httpClientService.get({
+      controller: "users",
+      action: `get-roles-to-user/${userId}`
+    });
+
+    const promiseData = firstValueFrom(observable);
+    promiseData.then(() => successCallBack()).catch(error => errorCallBack(error));
+
+    return (await promiseData).userRoles;
   }
 }
