@@ -38,17 +38,7 @@
         </button>
         </td>
       </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td [id]="element.id" mat-cell *matCellDef="let element"
-          appDelete
-          [id]="element.id"
-          controller="users"
-          (callBack)="getUsers()"
-        ></td><!-- Parametrekleri girdik -->
-      </ng-container>
-
+      
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>

@@ -89,7 +89,6 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   submittedRegister: boolean = false;
   async onSubmitRegister(user: User) {
     this.showSpinner(SpinnerType.SquareJellyBox);
-    debugger;
 
     this.submittedRegister = true;
 
@@ -154,12 +153,28 @@ export class RegisterComponent extends BaseComponent implements OnInit {
         returnUrl = params["returnUrl"]
       });
 
+      // const userRoles: string[] = await this.userService.getRolesToUserNameOrEmail(this.frmLogin.value.userNameOrEmail);
+      // debugger
+
+      // if (userRole == "Admin") {
+      //   alert("admin sayfasına yönlendiricez")
+      // }
+      // else {
+      //   if (returnUrl) {
+      //     this.router.navigate([returnUrl])
+      //   }
+      //   else {
+      //     this.router.navigate(["sidebar/advert"])
+      //   }
+      // }
+
       if (returnUrl) {
         this.router.navigate([returnUrl])
       }
       else {
         this.router.navigate(["sidebar/advert"])
       }
+
       this.hideSpinner(SpinnerType.SquareJellyBox);
     })
   }

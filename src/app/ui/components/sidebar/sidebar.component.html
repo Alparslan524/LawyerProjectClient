@@ -30,7 +30,7 @@
           ><i class='bx bxs-user-pin' ></i> Profil</a
         >
       </li>
-      <li>
+      <li *ngIf="isAdmin">
         <a href="#" routerLink="admin"
           ><i class='bx bxs-user-pin' ></i> Admin</a
         >

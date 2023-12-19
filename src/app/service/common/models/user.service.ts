@@ -167,4 +167,16 @@ export class UserService {
 
     return (await promiseData).userRoles;
   }
+
+  async getRolesToUserNameOrEmail(userNameOrEmail: string, successCallBack?: () => void, errorCallBack?: (error) => void): Promise<string[]> {
+    const observable: Observable<{ userRoles: string[] }> = this.httpClientService.get({
+      controller: "users",
+      action: `get-roles-to-usernameoremail/${userNameOrEmail}`
+    });
+
+    const promiseData = firstValueFrom(observable);
+    promiseData.then(() => successCallBack()).catch(error => errorCallBack(error));
+
+    return (await promiseData).userRoles;
+  }
 }

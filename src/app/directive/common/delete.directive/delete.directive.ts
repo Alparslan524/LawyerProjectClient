@@ -51,6 +51,7 @@ export class DeleteDirective {
                 messageType: MessageType.Success,
                 position: Position.TopRight
               })
+              this.spinner.hide(SpinnerType.SquareJellyBox);
             });
           }, (errorResponse: HttpErrorResponse) => {
             this.spinner.hide(SpinnerType.SquareJellyBox);
@@ -58,6 +59,7 @@ export class DeleteDirective {
               messageType: MessageType.Error,
               position: Position.TopRight
             })
+            this.spinner.hide(SpinnerType.SquareJellyBox);
           });
         }
       }

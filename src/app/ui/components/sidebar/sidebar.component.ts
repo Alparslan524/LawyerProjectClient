@@ -7,6 +7,7 @@ import { SignOutDialogComponent, SignOutDialogState } from 'src/app/dialogs/sign
 import { AlertifyService, MessageType, Position } from 'src/app/service/common/alertify.service';
 import { AuthService } from 'src/app/service/common/auth.service';
 import { DialogService } from 'src/app/service/common/dialog.service';
+import { UserService } from 'src/app/service/common/models/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,16 +17,19 @@ import { DialogService } from 'src/app/service/common/dialog.service';
 export class SidebarComponent extends BaseComponent implements OnInit {
   title = 'LawyerProjectClient';
   constructor(spinner: NgxSpinnerService, private authService: AuthService, private router: Router, private alertifyService: AlertifyService,
-    private socialAuthService: SocialAuthService, private dialogService: DialogService) {
+    private socialAuthService: SocialAuthService, private dialogService: DialogService, private userService: UserService) {
     super(spinner)
     // authService.identityCheck();
   }
 
+  isAdmin: boolean;
+  async ngOnInit() {
+    this.isAdmin = await this.isAdminPresent(await this.userService.getRolesToUserNameOrEmail(localStorage.getItem("userNameOrEmail")));
 
-  ngOnInit(): void {
+  }
 
-
-
+  isAdminPresent(roles: string[]): boolean {
+    return roles.includes("Admin");
   }
 
   async signOut() {
@@ -45,7 +49,7 @@ export class SidebarComponent extends BaseComponent implements OnInit {
         this.alertifyService.message("Oturum kapatıldı", {
           messageType: MessageType.Success,
           position: Position.TopRight,
-          dismissOthers:true
+          dismissOthers: true
         });
       }
     })

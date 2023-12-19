@@ -22,7 +22,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['userName', 'nameSurname', 'email', 'twoFactorEnabled', 'role', 'delete'];
+  displayedColumns: string[] = ['userName', 'nameSurname', 'email', 'twoFactorEnabled', 'role'];
   dataSource: MatTableDataSource<List_User> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
