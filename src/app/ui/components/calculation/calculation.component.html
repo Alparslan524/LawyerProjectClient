@@ -1,3 +1,32 @@
 <mat-drawer-container class="calculation-container">
-  <mat-drawer-content> <p>calculation works!</p> </mat-drawer-content>
+  <mat-drawer-content class="mat-card-container">
+    <div class="container" style="margin-top: 10px">
+      <div class="row">
+        <div class="col-md-6">
+          <app-net-gross></app-net-gross>
+        </div>
+
+        <div class="col-md-6">
+          <app-gross-net></app-gross-net>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <app-severance-pay></app-severance-pay>
+        </div>
+
+        <div class="col-md-6">
+          <app-notice-pay></app-notice-pay>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <app-annual-leave></app-annual-leave>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>

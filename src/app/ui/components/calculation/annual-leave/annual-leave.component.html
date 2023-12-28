@@ -1,0 +1,82 @@
+<mat-drawer-container class="drawer-container">
+  <mat-drawer-content>
+    <div class="card-container">
+      <div class="container">
+        <div class="row" style="margin: 0">
+          <div class="col-md-12">
+            <div class="info-card">
+              <div class="info-card-container">
+                <div>
+                  <br /><br />
+                  <h1 style="color: black; margin: 3px">İzin Günü Hesaplama</h1>
+                </div>
+
+                <form
+                  [formGroup]="annualLeaveForm"
+                  (ngSubmit)="getAnnualLeave()"
+                >
+                  <div class="container" style="color: black">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <mat-form-field class="netSalary" appearance="outline">
+                          <mat-label>Net Maaş</mat-label>
+                          <input
+                            matInput
+                            formControlName="netSalary"
+                            type="number"
+                            min="0"
+                            value="0"
+                          />
+                        </mat-form-field>
+
+                        <mat-form-field
+                          class="dateOfEntry"
+                          appearance="outline"
+                        >
+                          <mat-label> İşe Giriş Tarihi </mat-label>
+                          <input
+                            matInput
+                            type="date"
+                            formControlName="dateOfEntry"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="getAnnualLeave()"
+                        [disabled]="!annualLeaveForm.valid"
+                      >
+                        Hesapla
+                      </button>
+                    </div>
+
+                    <div class="row" *ngIf="annualFee || annualLeaveDay">
+                      <div class="col-md-6">
+                        <div class="col-sm-12">
+                          <h3 style="color: black; margin: 3px">İzin Ücreti</h3>
+                          <h1>{{ annualFee | number : "1.1-1" }} ₺</h1>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-sm-12">
+                          <h3 style="color: black; margin: 3px">İzin Günü</h3>
+                          <h1>
+                            {{ annualLeaveDay }}
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
